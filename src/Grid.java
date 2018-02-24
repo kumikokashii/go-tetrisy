@@ -4,6 +4,18 @@ import java.util.*;
 
 public class Grid extends ArrayList<ArrayList<Integer>> {
   public static void main(String[] args) {
+    Grid g = testGrid();
+    System.out.println(g);
+    g.addPiece(Piece.BAR, 1);  // piece, leftX of the piece
+    System.out.println(g);
+    System.out.println(g.getRowsToRemove());
+    g.removeRows();
+    System.out.println(g);
+    g.addRows();
+    System.out.println(g);
+  }
+
+  public static Grid testGrid() {
     Grid g = new Grid(5, 10);
     for (int y = 0; y < 5; y++) {
       for (int x = 0; x < 10; x++) {
@@ -11,14 +23,7 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
         else {g.get(y).set(x, 1);}
       }
     }
-    System.out.println(g);
-
-    g.addPiece(Piece.BAR, 1);  // piece, leftX of the piece
-    System.out.println(g);
-
-    System.out.println(g.getRowsToRemove());
-    g.removeAndAddRows();
-    System.out.println(g);
+    return g;
   }
 
   private final int h;
@@ -39,14 +44,14 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
     this.h = h;
     this.w = w;
 
-    ArrayList<Integer> row = getEmptyRow();
+    List<Integer> row = getEmptyRow();
     for (int y = 0; y < h; y++) {
       add(new ArrayList<Integer>(row));
     }
   }
 
-  public ArrayList<Integer> getEmptyRow() {
-    ArrayList<Integer> row = new ArrayList<Integer>();
+  public List<Integer> getEmptyRow() {
+    List<Integer> row = new ArrayList<Integer>();
     for (int x = 0; x < w; x++) {
       row.add(0);
     }
@@ -71,7 +76,7 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
   }
 
   public void fill(int y, int x) {
-    this.get(y).set(x, 1);
+    get(y).set(x, 1);
   }
 
   public void addPiece(Piece piece, int leftX) {
@@ -111,24 +116,23 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
     return rowsToRemove;
   }
 
-  public void addRowsAtTop(int n) {
-    ArrayList<Integer> row = getEmptyRow();
-    for (int i = 0; i < n; i++) {
-      add(0, new ArrayList<Integer>(row));
-    }
-  }
-
-  public void removeAndAddRows() {
+  public void removeRows() {
     List<Integer> rowsToRemove = getRowsToRemove();
     Collections.sort(rowsToRemove, Collections.reverseOrder());
 
     for (int y : rowsToRemove) {
       remove(y);
     }
-
-    addRowsAtTop(rowsToRemove.size());
-    
   }
+
+  public void addRows() {
+    int n = h - this.size();
+    List<Integer> row = getEmptyRow();
+    for (int i = 0; i < n; i++) {
+      add(0, new ArrayList<Integer>(row));
+    }
+  }
+
 }
 
 
