@@ -119,7 +119,6 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
   public void removeRows() {
     List<Integer> rowsToRemove = getRowsToRemove();
     Collections.sort(rowsToRemove, Collections.reverseOrder());
-
     for (int y : rowsToRemove) {
       remove(y);
     }

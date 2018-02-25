@@ -11,7 +11,7 @@ public enum Piece {
   Z(zShape(), 2, 3),
   T(tShape(), 2, 3);
 
-  public final ArrayList<ArrayList<Integer>> shape;
+  public final List<List<Integer>> shape;
   public final int yLen;
   public final int xLen;
 
@@ -20,14 +20,14 @@ public enum Piece {
     return (value == 1);
   }
 
-  private Piece(ArrayList<ArrayList<Integer>> shape, int yLen, int xLen) {
+  private Piece(List<List<Integer>> shape, int yLen, int xLen) {
     this.shape = shape;
     this.yLen = yLen;
     this.xLen = xLen;
   }
 
-  private static ArrayList<ArrayList<Integer>> barShape() {
-    ArrayList<ArrayList<Integer>> shape = new ArrayList<ArrayList<Integer>>();
+  private static List<List<Integer>> barShape() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
     shape.add(new ArrayList<Integer>(Arrays.asList(1)));
     shape.add(new ArrayList<Integer>(Arrays.asList(1)));
     shape.add(new ArrayList<Integer>(Arrays.asList(1)));
@@ -35,45 +35,45 @@ public enum Piece {
     return shape;
   }
 
-  private static ArrayList<ArrayList<Integer>> lShape() {
-    ArrayList<ArrayList<Integer>> shape = new ArrayList<ArrayList<Integer>>();
+  private static List<List<Integer>> lShape() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
     shape.add(new ArrayList<Integer>(Arrays.asList(1, 0)));
     shape.add(new ArrayList<Integer>(Arrays.asList(1, 0)));
     shape.add(new ArrayList<Integer>(Arrays.asList(1, 1)));
     return shape;
   }
 
-  private static ArrayList<ArrayList<Integer>> flipLShape() {
-    ArrayList<ArrayList<Integer>> shape = new ArrayList<ArrayList<Integer>>();
+  private static List<List<Integer>> flipLShape() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
     shape.add(new ArrayList<Integer>(Arrays.asList(0, 1)));
     shape.add(new ArrayList<Integer>(Arrays.asList(0, 1)));
     shape.add(new ArrayList<Integer>(Arrays.asList(1, 1)));
     return shape;
   }
 
-  private static ArrayList<ArrayList<Integer>> boxShape() {
-    ArrayList<ArrayList<Integer>> shape = new ArrayList<ArrayList<Integer>>();
+  private static List<List<Integer>> boxShape() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
     shape.add(new ArrayList<Integer>(Arrays.asList(1, 1)));
     shape.add(new ArrayList<Integer>(Arrays.asList(1, 1)));
     return shape;
   }
 
-  private static ArrayList<ArrayList<Integer>> sShape() {
-    ArrayList<ArrayList<Integer>> shape = new ArrayList<ArrayList<Integer>>();
+  private static List<List<Integer>> sShape() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
     shape.add(new ArrayList<Integer>(Arrays.asList(0, 1, 1)));
     shape.add(new ArrayList<Integer>(Arrays.asList(1, 1, 0)));
     return shape;
   }
 
-  private static ArrayList<ArrayList<Integer>> zShape() {
-    ArrayList<ArrayList<Integer>> shape = new ArrayList<ArrayList<Integer>>();
+  private static List<List<Integer>> zShape() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
     shape.add(new ArrayList<Integer>(Arrays.asList(1, 1, 0)));
     shape.add(new ArrayList<Integer>(Arrays.asList(0, 1, 1)));
     return shape;
   }
 
-  private static ArrayList<ArrayList<Integer>> tShape() {
-    ArrayList<ArrayList<Integer>> shape = new ArrayList<ArrayList<Integer>>();
+  private static List<List<Integer>> tShape() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
     shape.add(new ArrayList<Integer>(Arrays.asList(1, 1, 1)));
     shape.add(new ArrayList<Integer>(Arrays.asList(0, 1, 0)));
     return shape;
