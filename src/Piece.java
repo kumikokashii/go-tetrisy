@@ -3,30 +3,93 @@ import java.util.*;
 
 
 public enum Piece {
-  BAR(barShape(), 4, 1),
-  L(lShape(), 3, 2),
-  FLIP_L(flipLShape(), 3, 2),
-  BOX(boxShape(), 2, 2),
-  S(sShape(), 2, 3),
-  Z(zShape(), 2, 3),
-  T(tShape(), 2, 3);
+  BAR_0(barShape_0()),
+  BAR_1(barShape_1()),
+  L_0(lShape_0()),
+  L_1(lShape_1()),
+  L_2(lShape_2()),
+  L_3(lShape_3()),
+  FLIP_L_0(flipLShape_0()),
+  FLIP_L_1(flipLShape_1()),
+  FLIP_L_2(flipLShape_2()),
+  FLIP_L_3(flipLShape_3()),
+  BOX(boxShape()),
+  S_0(sShape_0()),
+  S_1(sShape_1()),
+  Z_0(zShape_0()),
+  Z_1(zShape_1()),
+  T_0(tShape_0()),
+  T_1(tShape_1()),
+  T_2(tShape_2()),
+  T_3(tShape_3());
+
+  private static Map<Piece, Piece> rightRotated = initRightRotated();
+  private static Map<Piece, Piece> leftRotated = initLeftRotated();
+
+  private static Map<Piece, Piece> initRightRotated() {
+    Map<Piece, Piece> rightRotated = new HashMap<Piece, Piece>();
+    rightRotated.put(BAR_0, BAR_1);
+    rightRotated.put(BAR_1, BAR_0);
+    rightRotated.put(L_0, L_1);
+    rightRotated.put(L_1, L_2);
+    rightRotated.put(L_2, L_3);
+    rightRotated.put(L_3, L_0);
+    rightRotated.put(FLIP_L_0, FLIP_L_1);
+    rightRotated.put(FLIP_L_1, FLIP_L_2);
+    rightRotated.put(FLIP_L_2, FLIP_L_3);
+    rightRotated.put(FLIP_L_3, FLIP_L_0);
+    rightRotated.put(BOX, BOX);
+    rightRotated.put(S_0, S_1);
+    rightRotated.put(S_1, S_0);
+    rightRotated.put(Z_0, Z_1);
+    rightRotated.put(Z_1, Z_0);
+    rightRotated.put(T_0, T_1);
+    rightRotated.put(T_1, T_2);
+    rightRotated.put(T_2, T_3);
+    rightRotated.put(T_3, T_0);
+    return rightRotated;
+  }
+
+  private static Map<Piece, Piece> initLeftRotated() {
+    Map<Piece, Piece> leftRotated = new HashMap<Piece, Piece>();
+    for (Map.Entry<Piece, Piece> entry : rightRotated.entrySet()) {
+      leftRotated.put(entry.getValue(), entry.getKey());
+    }
+    return leftRotated;
+  }
 
   public final List<List<Integer>> shape;
   public final int yLen;
   public final int xLen;
+
+  private Piece(List<List<Integer>> shape) {
+    this.shape = shape;
+    this.yLen = shape.size();
+    this.xLen = shape.get(0).size();
+  }
+
+  public Piece getRightRotated(Piece piece) {
+    return rightRotated.get(piece);
+  }
+
+  public Piece getLeftRotated(Piece piece) {
+    return leftRotated.get(piece);
+  }
 
   public boolean isFilled(int y, int x) {
     int value = shape.get(y).get(x);
     return (value == 1);
   }
 
-  private Piece(List<List<Integer>> shape, int yLen, int xLen) {
-    this.shape = shape;
-    this.yLen = yLen;
-    this.xLen = xLen;
+  public String toString() {
+    String s = "";
+    for (List row: this.shape) {
+      s += String.format("%s%n", row);
+    }
+    return s;
   }
 
-  private static List<List<Integer>> barShape() {
+  private static List<List<Integer>> barShape_0() {
     List<List<Integer>> shape = new ArrayList<List<Integer>>();
     shape.add(new ArrayList<Integer>(Arrays.asList(1)));
     shape.add(new ArrayList<Integer>(Arrays.asList(1)));
@@ -35,7 +98,13 @@ public enum Piece {
     return shape;
   }
 
-  private static List<List<Integer>> lShape() {
+  private static List<List<Integer>> barShape_1() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 1, 1, 1)));
+    return shape;
+  }
+
+  private static List<List<Integer>> lShape_0() {
     List<List<Integer>> shape = new ArrayList<List<Integer>>();
     shape.add(new ArrayList<Integer>(Arrays.asList(1, 0)));
     shape.add(new ArrayList<Integer>(Arrays.asList(1, 0)));
@@ -43,11 +112,55 @@ public enum Piece {
     return shape;
   }
 
-  private static List<List<Integer>> flipLShape() {
+  private static List<List<Integer>> lShape_1() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 1, 1)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 0, 0)));
+    return shape;
+  }
+
+  private static List<List<Integer>> lShape_2() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 1)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(0, 1)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(0, 1)));
+    return shape;
+  }
+
+  private static List<List<Integer>> lShape_3() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
+    shape.add(new ArrayList<Integer>(Arrays.asList(0, 0, 1)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 1, 1)));
+    return shape;
+  }
+
+  private static List<List<Integer>> flipLShape_0() {
     List<List<Integer>> shape = new ArrayList<List<Integer>>();
     shape.add(new ArrayList<Integer>(Arrays.asList(0, 1)));
     shape.add(new ArrayList<Integer>(Arrays.asList(0, 1)));
     shape.add(new ArrayList<Integer>(Arrays.asList(1, 1)));
+    return shape;
+  }
+
+  private static List<List<Integer>> flipLShape_1() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 0, 0)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 1, 1)));
+    return shape;
+  }
+
+  private static List<List<Integer>> flipLShape_2() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 1)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 0)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 0)));
+    return shape;
+  }
+
+  private static List<List<Integer>> flipLShape_3() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 1, 1)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(0, 0, 1)));
     return shape;
   }
 
@@ -58,24 +171,63 @@ public enum Piece {
     return shape;
   }
 
-  private static List<List<Integer>> sShape() {
+  private static List<List<Integer>> sShape_0() {
     List<List<Integer>> shape = new ArrayList<List<Integer>>();
     shape.add(new ArrayList<Integer>(Arrays.asList(0, 1, 1)));
     shape.add(new ArrayList<Integer>(Arrays.asList(1, 1, 0)));
     return shape;
   }
 
-  private static List<List<Integer>> zShape() {
+  private static List<List<Integer>> sShape_1() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 0)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 1)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(0, 1)));
+    return shape;
+  }
+
+  private static List<List<Integer>> zShape_0() {
     List<List<Integer>> shape = new ArrayList<List<Integer>>();
     shape.add(new ArrayList<Integer>(Arrays.asList(1, 1, 0)));
     shape.add(new ArrayList<Integer>(Arrays.asList(0, 1, 1)));
     return shape;
   }
 
-  private static List<List<Integer>> tShape() {
+  private static List<List<Integer>> zShape_1() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
+    shape.add(new ArrayList<Integer>(Arrays.asList(0, 1)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 1)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 0)));
+    return shape;
+  }
+
+  private static List<List<Integer>> tShape_0() {
     List<List<Integer>> shape = new ArrayList<List<Integer>>();
     shape.add(new ArrayList<Integer>(Arrays.asList(1, 1, 1)));
     shape.add(new ArrayList<Integer>(Arrays.asList(0, 1, 0)));
+    return shape;
+  }
+
+  private static List<List<Integer>> tShape_1() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
+    shape.add(new ArrayList<Integer>(Arrays.asList(0, 1)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 1)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(0, 1)));
+    return shape;
+  }
+
+  private static List<List<Integer>> tShape_2() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
+    shape.add(new ArrayList<Integer>(Arrays.asList(0, 1, 0)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 1, 1)));
+    return shape;
+  }
+
+  private static List<List<Integer>> tShape_3() {
+    List<List<Integer>> shape = new ArrayList<List<Integer>>();
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 0)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 1)));
+    shape.add(new ArrayList<Integer>(Arrays.asList(1, 0)));
     return shape;
   }
 

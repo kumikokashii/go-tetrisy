@@ -6,13 +6,17 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
   public static void main(String[] args) {
     Grid g = testGrid();
     System.out.println(g);
-    g.addPiece(Piece.BAR, 1);  // piece, leftX of the piece
+    g.setPiece(Piece.T_3);
+    g.update(5);
+    g.setPiece(Piece.BOX);
+    g.update(5);
     System.out.println(g);
-    System.out.println(g.getRowsToRemove());
-    g.removeRows();
-    System.out.println(g);
-    g.addRows();
-    System.out.println(g);
+  }
+
+  public void update(int leftX) {
+    addPiece(leftX);
+    removeRows();
+    addRows();
   }
 
   public static Grid testGrid() {
@@ -20,7 +24,7 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
     for (int y = 0; y < 5; y++) {
       for (int x = 0; x < 10; x++) {
         if (x == 1) {g.get(y).set(x, 0);}
-        else {g.get(y).set(x, 1);}
+        else {g.get(y).set(x, 0);}
       }
     }
     return g;
@@ -28,16 +32,10 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
 
   private final int h;
   private final int w;
-  private int beforeTop;  // Specific to when adding a piece
-  private int nowTop;  // Specific to when adding a piece
 
-  public String toString() {
-    String s = "";
-    for (ArrayList row: this) {
-      s += String.format("%s%n", row);
-    }
-    return s;
-  }
+  private Piece piece;  // Currently falling piece
+  private int beforeTop;  // Specific to when adding piece
+  private int nowTop;  // Specific to when adding piece
 
   public Grid(int h, int w) {
     super();
@@ -48,6 +46,18 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
     for (int y = 0; y < h; y++) {
       add(new ArrayList<Integer>(row));
     }
+  }
+
+  public void setPiece(Piece piece) {
+    this.piece = piece;
+  }
+
+  public String toString() {
+    String s = "";
+    for (ArrayList row: this) {
+      s += String.format("%s%n", row);
+    }
+    return s;
   }
 
   public List<Integer> getEmptyRow() {
@@ -63,7 +73,7 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
     return (value == 1);
   }
 
-  public int getTopFilled(Piece piece, int leftX) {
+  public int getTopFilled(int leftX) {
     // Find highest filled y across width of piece
     for (int y = 0; y < h; y++) {
       for (int x = leftX; x < (leftX + piece.xLen); x++) {
@@ -79,11 +89,11 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
     get(y).set(x, 1);
   }
 
-  public void addPiece(Piece piece, int leftX) {
-    beforeTop = getTopFilled(piece, leftX);
+  public void addPiece(int leftX) {
+    beforeTop = getTopFilled(leftX);
     nowTop = beforeTop - piece.yLen;
 
-    if (nowTop < 0) {
+    if (nowTop <= 0) {
       System.out.println("Game Over");
       return;
     }
