@@ -42,6 +42,10 @@ public class Manager {
     blocks_size = blocks.size();
   }
 
+  public Grid getGrid() {
+    return grid;
+  }
+
   public Block getRandomBlock() {
     int i = ThreadLocalRandom.current().nextInt(0, blocks_size);
     return blocks.get(i);
