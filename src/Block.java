@@ -23,8 +23,21 @@ public enum Block {
   T_2(tShape_2()),
   T_3(tShape_3());
 
+  public final List<List<Integer>> shape;
+  public final int yLen;
+  public final int xLen;
+
+  private Block(List<List<Integer>> shape) {
+    this.shape = shape;
+    this.yLen = shape.size();
+    this.xLen = shape.get(0).size();
+  }
+
   private static Map<Block, Block> rightRotated = initRightRotated();
   private static Map<Block, Block> leftRotated = initLeftRotated();
+  private static Map<Block, Integer> rotateShiftY = initRotateShiftY();
+  private static Map<Block, Integer> rotateRightShiftX = initRotateRightShiftX();
+  private static Map<Block, Integer> rotateLeftShiftX = initRotateLeftShiftX();
 
   private static Map<Block, Block> initRightRotated() {
     Map<Block, Block> rightRotated = new HashMap<Block, Block>();
@@ -58,22 +71,81 @@ public enum Block {
     return leftRotated;
   }
 
-  public final List<List<Integer>> shape;
-  public final int yLen;
-  public final int xLen;
-
-  private Block(List<List<Integer>> shape) {
-    this.shape = shape;
-    this.yLen = shape.size();
-    this.xLen = shape.get(0).size();
+  private static Map<Block, Integer> initRotateShiftY() {
+    Map<Block, Integer> rotateShiftY = new HashMap<Block, Integer>();
+    rotateShiftY.put(BAR_0, 1);
+    rotateShiftY.put(BAR_1, -1);
+    rotateShiftY.put(L_0, 1);
+    rotateShiftY.put(L_1, -1);
+    rotateShiftY.put(L_2, 1);
+    rotateShiftY.put(L_3, -1);
+    rotateShiftY.put(FLIP_L_0, 1);
+    rotateShiftY.put(FLIP_L_1, -1);
+    rotateShiftY.put(FLIP_L_2, 1);
+    rotateShiftY.put(FLIP_L_3, -1);
+    rotateShiftY.put(BOX, 0);
+    rotateShiftY.put(S_0, -1);
+    rotateShiftY.put(S_1, 1);
+    rotateShiftY.put(Z_0, -1);
+    rotateShiftY.put(Z_1, 1);
+    rotateShiftY.put(T_0, -1);
+    rotateShiftY.put(T_1, 1);
+    rotateShiftY.put(T_2, -1);
+    rotateShiftY.put(T_3, 1);
+    return rotateShiftY;
   }
 
-  public Block getRightRotated(Block piece) {
-    return rightRotated.get(piece);
+  private static Map<Block, Integer> initRotateRightShiftX() {
+    Map<Block, Integer> rotateRightShiftX = new HashMap<Block, Integer>();
+    rotateRightShiftX.put(BAR_0, -2);
+    rotateRightShiftX.put(BAR_1, 2);
+    rotateRightShiftX.put(L_0, -1);
+    rotateRightShiftX.put(L_1, 0);
+    rotateRightShiftX.put(L_2, 0);
+    rotateRightShiftX.put(L_3, 1);
+    rotateRightShiftX.put(FLIP_L_0, 0);
+    rotateRightShiftX.put(FLIP_L_1, 1);
+    rotateRightShiftX.put(FLIP_L_2, -1);
+    rotateRightShiftX.put(FLIP_L_3, 0);
+    rotateRightShiftX.put(BOX, 0);
+    rotateRightShiftX.put(S_0, 0);
+    rotateRightShiftX.put(S_1, 0);
+    rotateRightShiftX.put(Z_0, 1);
+    rotateRightShiftX.put(Z_1, -1);
+    rotateRightShiftX.put(T_0, 0);
+    rotateRightShiftX.put(T_1, 0);
+    rotateRightShiftX.put(T_2, 1);
+    rotateRightShiftX.put(T_3, -1);
+    return rotateRightShiftX;
   }
 
-  public Block getLeftRotated(Block piece) {
-    return leftRotated.get(piece);
+  private static Map<Block, Integer> initRotateLeftShiftX() {
+    Map<Block, Integer> rotateLeftShiftX = new HashMap<Block, Integer>(rotateRightShiftX);
+    rotateLeftShiftX.put(T_0, 1);
+    rotateLeftShiftX.put(T_1, -1);
+    rotateLeftShiftX.put(T_2, 0);
+    rotateLeftShiftX.put(T_3, 0);
+    return rotateLeftShiftX;
+  }
+
+  public Block getRightRotated() {
+    return rightRotated.get(this);
+  }
+
+  public Block getLeftRotated() {
+    return leftRotated.get(this);
+  }
+
+  public int getRotateShiftY() {
+    return rotateShiftY.get(this);
+  }
+
+  public int getRotateRightShiftX() {
+    return rotateRightShiftX.get(this);
+  }
+
+  public int getRotateLeftShiftX() {
+    return rotateLeftShiftX.get(this);
   }
 
   public boolean isFilled(int y, int x) {

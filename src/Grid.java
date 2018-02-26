@@ -3,20 +3,6 @@ import java.util.*;
 
 
 public class Grid extends ArrayList<ArrayList<Integer>> {
-  public static void main(String[] args) {
-  }
-
-  public static Grid testGrid() {
-    Grid g = new Grid(5, 10);
-    for (int y = 0; y < 5; y++) {
-      for (int x = 0; x < 10; x++) {
-        if (x == 1) {g.get(y).set(x, 0);}
-        else {g.get(y).set(x, 0);}
-      }
-    }
-    return g;
-  }
-
   public final int h;
   public final int w;
 
