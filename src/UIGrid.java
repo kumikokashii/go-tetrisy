@@ -1,7 +1,7 @@
 
 import java.awt.*;
 import javax.swing.*;
-
+import java.awt.event.*;
 
 public class UIGrid extends JPanel {
 
@@ -12,30 +12,93 @@ public class UIGrid extends JPanel {
     m.updateGrid();
     System.out.println(m.getGrid());
 
+    m.setupNewPiece();
+
+    Controller controller = new Controller(m);
     JFrame window = new JFrame("Go Tetrisy");
-    JPanel uiGrid = new UIGrid(30, m.getGrid());
+    UIGrid uiGrid = new UIGrid(30, m.getGrid(), controller);
+    controller.setUIGrid(uiGrid);
+
+    System.out.println(m.getPiece());
+    uiGrid.setPiece(m.getPiece());
+
     window.setContentPane(uiGrid);
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     window.setSize(500, 650);
     window.setVisible(true);
+
   }
 
   private final int h;
   private final int w;
   private final int side;
   private final Grid grid;
+  private Piece piece;
+  private final Controller controller;
 
-  public UIGrid(int side, Grid grid) {
+  public class uiGridKeyListener implements KeyListener {
+
+    public void keyPressed(KeyEvent e) {
+      int key = e.getKeyCode();
+
+      // Shift
+      if (key == KeyEvent.VK_LEFT) {
+        controller.shiftLeftAttempt();
+      }
+      else if (key == KeyEvent.VK_RIGHT) {
+        controller.shiftRightAttempt();
+      }
+      else if (key == KeyEvent.VK_DOWN) {
+        controller.shiftDownAttempt();
+      }
+
+      // Rotate
+      else if (key == KeyEvent.VK_Z) {
+        controller.rotateLeftAttempt();
+      }
+      else if (key == KeyEvent.VK_X) {
+        controller.rotateRightAttempt();
+      }
+
+      // Drop
+      else if (key == KeyEvent.VK_SPACE) {
+        controller.dropAttempt();
+      }
+
+      // Pause
+      else if (key == KeyEvent.VK_P) {
+        controller.pause();
+      }
+
+      else {}
+    }
+
+    public void keyTyped(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {}
+  }
+
+  public UIGrid(int side, Grid grid, Controller controller) {
     this.h = grid.h;
     this.w = grid.w;
     this.side = side;
     this.grid = grid;
+    this.controller = controller;
+
+    addKeyListener(new uiGridKeyListener());
+    setFocusable(true);
+  }
+
+  public void setPiece(Piece piece) {
+    this.piece = piece;
   }
 
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     drawGridLines(g);
     drawBlocks(g);
+    if (piece != null) {
+      drawPiece(g);
+    }
   }
 
   public void drawGridLines(Graphics g) {
@@ -56,6 +119,21 @@ public class UIGrid extends JPanel {
     for (int y = 0; y < h; y++) {
       for (int x = 0; x < w; x++) {
         if (grid.isFilled(y, x)) {
+          g.fillRect(x * side, y * side, side, side);
+        }
+      }
+    }
+  }
+
+  public void drawPiece(Graphics g) {
+    g.setColor(Color.BLUE);
+
+    for (int y = piece.y; y < (piece.y + piece.block.yLen); y++) {
+      if (y < 0) {
+        continue;
+      }
+      for (int x = piece.x; x < (piece.x + piece.block.xLen); x++) {
+        if (piece.block.isFilled(y - piece.y, x - piece.x)) {
           g.fillRect(x * side, y * side, side, side);
         }
       }

@@ -46,6 +46,10 @@ public class Manager {
     return grid;
   }
 
+  public Piece getPiece() {
+    return piece;
+  }
+
   public Block getRandomBlock() {
     int i = ThreadLocalRandom.current().nextInt(0, blocks_size);
     return blocks.get(i);
