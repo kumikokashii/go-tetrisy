@@ -2,7 +2,7 @@
 import java.util.*;
 
 
-public enum Piece {
+public enum Block {
   BAR_0(barShape_0()),
   BAR_1(barShape_1()),
   L_0(lShape_0()),
@@ -23,11 +23,11 @@ public enum Piece {
   T_2(tShape_2()),
   T_3(tShape_3());
 
-  private static Map<Piece, Piece> rightRotated = initRightRotated();
-  private static Map<Piece, Piece> leftRotated = initLeftRotated();
+  private static Map<Block, Block> rightRotated = initRightRotated();
+  private static Map<Block, Block> leftRotated = initLeftRotated();
 
-  private static Map<Piece, Piece> initRightRotated() {
-    Map<Piece, Piece> rightRotated = new HashMap<Piece, Piece>();
+  private static Map<Block, Block> initRightRotated() {
+    Map<Block, Block> rightRotated = new HashMap<Block, Block>();
     rightRotated.put(BAR_0, BAR_1);
     rightRotated.put(BAR_1, BAR_0);
     rightRotated.put(L_0, L_1);
@@ -50,9 +50,9 @@ public enum Piece {
     return rightRotated;
   }
 
-  private static Map<Piece, Piece> initLeftRotated() {
-    Map<Piece, Piece> leftRotated = new HashMap<Piece, Piece>();
-    for (Map.Entry<Piece, Piece> entry : rightRotated.entrySet()) {
+  private static Map<Block, Block> initLeftRotated() {
+    Map<Block, Block> leftRotated = new HashMap<Block, Block>();
+    for (Map.Entry<Block, Block> entry : rightRotated.entrySet()) {
       leftRotated.put(entry.getValue(), entry.getKey());
     }
     return leftRotated;
@@ -62,17 +62,17 @@ public enum Piece {
   public final int yLen;
   public final int xLen;
 
-  private Piece(List<List<Integer>> shape) {
+  private Block(List<List<Integer>> shape) {
     this.shape = shape;
     this.yLen = shape.size();
     this.xLen = shape.get(0).size();
   }
 
-  public Piece getRightRotated(Piece piece) {
+  public Block getRightRotated(Block piece) {
     return rightRotated.get(piece);
   }
 
-  public Piece getLeftRotated(Piece piece) {
+  public Block getLeftRotated(Block piece) {
     return leftRotated.get(piece);
   }
 

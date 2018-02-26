@@ -4,19 +4,6 @@ import java.util.*;
 
 public class Grid extends ArrayList<ArrayList<Integer>> {
   public static void main(String[] args) {
-    Grid g = testGrid();
-    System.out.println(g);
-    g.setPiece(Piece.T_3);
-    g.update(5);
-    g.setPiece(Piece.BOX);
-    g.update(5);
-    System.out.println(g);
-  }
-
-  public void update(int leftX) {
-    addPiece(leftX);
-    removeRows();
-    addRows();
   }
 
   public static Grid testGrid() {
@@ -30,12 +17,8 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
     return g;
   }
 
-  private final int h;
-  private final int w;
-
-  private Piece piece;  // Currently falling piece
-  private int beforeTop;  // Specific to when adding piece
-  private int nowTop;  // Specific to when adding piece
+  public final int h;
+  public final int w;
 
   public Grid(int h, int w) {
     super();
@@ -46,10 +29,6 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
     for (int y = 0; y < h; y++) {
       add(new ArrayList<Integer>(row));
     }
-  }
-
-  public void setPiece(Piece piece) {
-    this.piece = piece;
   }
 
   public String toString() {
@@ -73,38 +52,8 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
     return (value == 1);
   }
 
-  public int getTopFilled(int leftX) {
-    // Find highest filled y across width of piece
-    for (int y = 0; y < h; y++) {
-      for (int x = leftX; x < (leftX + piece.xLen); x++) {
-        if (isFilled(y, x)) {
-          return y;
-        } 
-      }
-    }
-    return h;
-  }
-
   public void fill(int y, int x) {
     get(y).set(x, 1);
-  }
-
-  public void addPiece(int leftX) {
-    beforeTop = getTopFilled(leftX);
-    nowTop = beforeTop - piece.yLen;
-
-    if (nowTop <= 0) {
-      System.out.println("Game Over");
-      return;
-    }
-
-    for (int y = nowTop; y < beforeTop; y++) {
-      for (int x = leftX; x < (leftX + piece.xLen); x++) {
-        if (piece.isFilled(y - nowTop, x - leftX)) {
-          fill(y, x);
-        }
-      }
-    }
   }
 
   public boolean rowIsFilled(int y) {
@@ -116,9 +65,9 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
     return true;
   }
 
-  public List<Integer> getRowsToRemove() {
+  public List<Integer> getRowsToRemove(int startY, int endY) {
     List<Integer> rowsToRemove = new ArrayList<Integer>();
-    for (int y = nowTop; y < beforeTop; y++) {
+    for (int y = startY; y < endY; y++) {
       if (rowIsFilled(y)) {
         rowsToRemove.add(y);
       }
@@ -126,8 +75,8 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
     return rowsToRemove;
   }
 
-  public void removeRows() {
-    List<Integer> rowsToRemove = getRowsToRemove();
+  public void removeRows(int startY, int endY) {
+    List<Integer> rowsToRemove = getRowsToRemove(startY, endY);
     Collections.sort(rowsToRemove, Collections.reverseOrder());
     for (int y : rowsToRemove) {
       remove(y);
