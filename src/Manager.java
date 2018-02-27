@@ -120,17 +120,17 @@ public class Manager {
 
   public void shiftPieceX(int value) {
     Piece maybePiece = piece.copy();
-    maybePiece.x += value;
+    maybePiece.shiftX(value);
     if (moveIsValid(maybePiece)) {
-      piece.x += value;
+      piece.shiftX(value);
     }
   }
 
   public void shiftPieceY(int value) {
     Piece maybePiece = piece.copy();
-    maybePiece.y += value;
+    maybePiece.shiftY(value);
     if (moveIsValid(maybePiece)) {
-      piece.y += value;
+      piece.shiftY(value);
     }
   }
 
