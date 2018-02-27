@@ -3,6 +3,13 @@ import java.util.*;
 
 
 public class Grid extends ArrayList<ArrayList<Integer>> {
+  public static int DEFAULT_H = 20;
+  public static int DEFAULT_W = 10;
+
+  public static Grid getDefault() {
+    return new Grid(DEFAULT_H, DEFAULT_W);
+  }
+
   public final int h;
   public final int w;
 

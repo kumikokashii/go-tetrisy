@@ -4,19 +4,27 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Manager {
-  public static void main(String[] args) {
-    Manager m = new Manager(20, 10);
+  private static Manager mngr = null;
 
-    while (! m.gameIsOver) {
-      m.setupNewPiece();
-      System.out.println(m.piece);
-      m.rotatePieceLeft();
-      System.out.println(m.piece);
-
-      m.dropPiece();
-      m.updateGrid();
-      System.out.println(m.grid);
+  public static Manager getInstance() {
+    if (mngr == null) {
+      mngr = new Manager();
     }
+    return mngr;
+  }
+
+  private Grid grid;
+  private List<Block> blocks;
+  private int blocks_size;
+  private Piece piece;
+  private boolean gameIsOver;
+
+  private Manager() {
+    grid = Grid.getDefault();
+    blocks = Arrays.asList(Block.values()); 
+    blocks_size = blocks.size();
+    piece = null;
+    gameIsOver = false;
   }
 
   public void updateGrid() {
@@ -28,18 +36,6 @@ public class Manager {
     }
     grid.removeRows(piece.y, (piece.y + piece.block.yLen));
     grid.addRows();
-  }
-
-  private Grid grid;
-  private List<Block> blocks;
-  private int blocks_size;
-  private Piece piece;
-  private boolean gameIsOver = false;
-
-  public Manager(int grid_h, int grid_w) {
-    this.grid = new Grid(grid_h, grid_w);
-    blocks = Arrays.asList(Block.values()); 
-    blocks_size = blocks.size();
   }
 
   public Grid getGrid() {

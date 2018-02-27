@@ -4,91 +4,37 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class UIGrid extends JPanel {
+  public static int DEFAULT_SIDE = 30;
 
-  public static void main(String [] args) {
-    Manager m = new Manager(20, 10);
-    m.setupNewPiece();
-    m.dropPiece();
-    m.updateGrid();
-    System.out.println(m.getGrid());
-
-    Controller controller = new Controller(m);
-    JFrame window = new JFrame("Go Tetrisy");
-    UIGrid uiGrid = new UIGrid(30, m, controller);
-    controller.setUIGrid(uiGrid);
-    controller.bringInNewPiece();
-
-    window.setContentPane(uiGrid);
-    window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    window.setSize(500, 650);
-    window.setVisible(true);
-
-  }
-
-  private final int h;
-  private final int w;
-  private final int side;
-  private final Manager m;
+  private int side;
+  private Manager mngr;
   private Grid grid;
+  private int h;
+  private int w;
   private Piece piece;
-  private final Controller controller;
+  private Controller cntr;
 
-  public void setPiece() {
-    this.piece = m.getPiece();
-  }
-
-  public class uiGridKeyListener implements KeyListener {
-
-    public void keyPressed(KeyEvent e) {
-      int key = e.getKeyCode();
-
-      // Shift
-      if (key == KeyEvent.VK_LEFT) {
-        controller.shiftLeftAttempt();
-      }
-      else if (key == KeyEvent.VK_RIGHT) {
-        controller.shiftRightAttempt();
-      }
-      else if (key == KeyEvent.VK_DOWN) {
-        controller.shiftDownAttempt();
-      }
-
-      // Rotate
-      else if (key == KeyEvent.VK_Z) {
-        controller.rotateLeftAttempt();
-      }
-      else if (key == KeyEvent.VK_X) {
-        controller.rotateRightAttempt();
-      }
-
-      // Drop
-      else if (key == KeyEvent.VK_SPACE) {
-        controller.dropAttempt();
-      }
-
-      // Pause
-      else if (key == KeyEvent.VK_P) {
-        controller.pause();
-      }
-
-      else {}
-    }
-
-    public void keyTyped(KeyEvent e) {}
-    public void keyReleased(KeyEvent e) {}
-  }
-
-  public UIGrid(int side, Manager m, Controller controller) {
-    this.m = m;
-    this.grid = m.getGrid();
-    this.h = grid.h;
-    this.w = grid.w;
-    this.side = side;
-    this.controller = controller;
-    this.piece = piece;
+  public UIGrid() {
+    side = DEFAULT_SIDE;
 
     addKeyListener(new uiGridKeyListener());
     setFocusable(true);
+  }
+
+  public void setManager(Manager mngr) {
+    this.mngr = mngr;
+    grid = mngr.getGrid();
+    h = grid.h;
+    w = grid.w;
+    piece = mngr.getPiece();
+  }
+
+  public void setController(Controller cntr) {
+    this.cntr = cntr;
+  }
+
+  public void setPiece() {
+    piece = mngr.getPiece();
   }
 
   public void paintComponent(Graphics g) {
@@ -138,4 +84,46 @@ public class UIGrid extends JPanel {
       }
     }
   }
+
+  public class uiGridKeyListener implements KeyListener {
+
+    public void keyPressed(KeyEvent e) {
+      int key = e.getKeyCode();
+
+      // Shift
+      if (key == KeyEvent.VK_LEFT) {
+        cntr.shiftLeftAttempt();
+      }
+      else if (key == KeyEvent.VK_RIGHT) {
+        cntr.shiftRightAttempt();
+      }
+      else if (key == KeyEvent.VK_DOWN) {
+        cntr.shiftDownAttempt();
+      }
+
+      // Rotate
+      else if (key == KeyEvent.VK_Z) {
+        cntr.rotateLeftAttempt();
+      }
+      else if (key == KeyEvent.VK_X) {
+        cntr.rotateRightAttempt();
+      }
+
+      // Drop
+      else if (key == KeyEvent.VK_SPACE) {
+        cntr.dropAttempt();
+      }
+
+      // Pause
+      else if (key == KeyEvent.VK_P) {
+        cntr.pause();
+      }
+
+      else {}
+    }
+
+    public void keyTyped(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {}
+  }
+
 }

@@ -1,45 +1,56 @@
 
 public class Controller {
+  private static Controller cntr = null;
 
-  private final Manager m;
-  private UIGrid uiGrid;
-
-  public Controller(Manager m) {
-    this.m = m;
+  public static Controller getInstance() {
+    if (cntr == null) {
+      cntr = new Controller();
+    }
+    return cntr;
   }
 
-  public void setUIGrid(UIGrid uiGrid) {
-    this.uiGrid = uiGrid;
+  private Manager mngr;
+  private Window window;
+  private UIGrid uiGrid;
+
+  private Controller() {}
+
+  public void setManager(Manager mngr) {
+    this.mngr = mngr;
+  }
+
+  public void setWindow(Window window) {
+    this.window = window;
   }
 
   public void shiftLeftAttempt() {
-    m.shiftPieceX(-1); 
+    mngr.shiftPieceX(-1); 
     uiGrid.repaint();
   }
 
   public void shiftRightAttempt() {
-    m.shiftPieceX(1);
+    mngr.shiftPieceX(1);
     uiGrid.repaint();
   }
 
   public void shiftDownAttempt() {
-    m.shiftPieceY(1);
+    mngr.shiftPieceY(1);
     uiGrid.repaint();
   }
 
   public void rotateLeftAttempt() {
-    m.rotatePieceLeft();
+    mngr.rotatePieceLeft();
     uiGrid.repaint();
   }
 
   public void rotateRightAttempt() {
-    m.rotatePieceRight();
+    mngr.rotatePieceRight();
     uiGrid.repaint();
   }
 
   public void dropAttempt() {
-    m.dropPiece();
-    m.updateGrid();
+    mngr.dropPiece();
+    mngr.updateGrid();
     bringInNewPiece();
   }
 
@@ -48,7 +59,7 @@ public class Controller {
   }
 
   public void bringInNewPiece() {
-    m.setupNewPiece();
+    mngr.setupNewPiece();
     uiGrid.setPiece();
     uiGrid.repaint();
   }
