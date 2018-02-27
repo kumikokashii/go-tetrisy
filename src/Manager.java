@@ -1,9 +1,12 @@
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-
+import javax.swing.Timer;
+import java.awt.event.*;
 
 public class Manager {
+  public static int DEFAULT_DROP_EVERY = 1000;  // 1000 milliseconds = 1 sec
+  
   private static Manager mngr = null;
 
   public static Manager getInstance() {
@@ -18,6 +21,8 @@ public class Manager {
   private int blocks_size;
   private Piece piece;
   private boolean gameIsOver;
+  private boolean pieceIsOver;
+  private Timer dropTimer;
 
   private Manager() {
     grid = Grid.getDefault();
@@ -25,17 +30,39 @@ public class Manager {
     blocks_size = blocks.size();
     piece = null;
     gameIsOver = false;
+    dropTimer = new Timer(DEFAULT_DROP_EVERY, new dropTimerActionListener());
   }
 
-  public void updateGrid() {
-    addPieceToGrid();
-    checkGameOver();
-    if (gameIsOver) {
-      System.out.println("GAME OVER");
-      return;
+  public class dropTimerActionListener implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      if (piece == null) {
+        setupNewPiece();
+        return;
+      }
+
+      checkPieceIsOver();
+      if (! pieceIsOver) {
+        shiftPieceY(1);
+        return;
+      }
+
+      addPieceToGrid();
+
+      checkGameOver();
+      if (gameIsOver) {
+        dropTimer.stop();
+        System.out.println("GAME OVER");
+        return;
+      }
+
+      grid.removeRows(piece.y, (piece.y + piece.block.yLen));
+      grid.addRows();
+      setupNewPiece();
     }
-    grid.removeRows(piece.y, (piece.y + piece.block.yLen));
-    grid.addRows();
+  }
+
+  public void setOn() {
+    dropTimer.start();
   }
 
   public Grid getGrid() {
@@ -54,6 +81,7 @@ public class Manager {
   public void setupNewPiece() {
     Block block = getRandomBlock();
     piece = new Piece(block);
+    pieceIsOver = false;
   }
 
   public boolean moveIsValid(Piece maybePiece) {
@@ -166,20 +194,14 @@ public class Manager {
       for (int x = piece.x; x < (piece.x + piece.block.xLen); x++) {
         if (piece.block.isFilled(y - piece.y, x - piece.x)) {
           if (((y + 1) == grid.h) || (grid.isFilled(y + 1, x))) {
-            piece.setIsOver(true);
+            pieceIsOver = true;
             return;
           }
         }
       }
     }
   }
+
 }
-
-
-
-
-
-
-
 
 

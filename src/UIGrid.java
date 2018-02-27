@@ -1,7 +1,7 @@
 
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
+
 
 public class UIGrid extends JPanel {
   public static int DEFAULT_SIDE = 30;
@@ -16,9 +16,6 @@ public class UIGrid extends JPanel {
 
   public UIGrid() {
     side = DEFAULT_SIDE;
-
-    addKeyListener(new uiGridKeyListener());
-    setFocusable(true);
   }
 
   public void setManager(Manager mngr) {
@@ -26,7 +23,6 @@ public class UIGrid extends JPanel {
     grid = mngr.getGrid();
     h = grid.h;
     w = grid.w;
-    piece = mngr.getPiece();
   }
 
   public void setController(Controller cntr) {
@@ -41,6 +37,7 @@ public class UIGrid extends JPanel {
     super.paintComponent(g);
     drawGridLines(g);
     drawBlocks(g);
+    setPiece();
     if (piece != null) {
       drawPiece(g);
     }
@@ -83,47 +80,6 @@ public class UIGrid extends JPanel {
         }
       }
     }
-  }
-
-  public class uiGridKeyListener implements KeyListener {
-
-    public void keyPressed(KeyEvent e) {
-      int key = e.getKeyCode();
-
-      // Shift
-      if (key == KeyEvent.VK_LEFT) {
-        cntr.shiftLeftAttempt();
-      }
-      else if (key == KeyEvent.VK_RIGHT) {
-        cntr.shiftRightAttempt();
-      }
-      else if (key == KeyEvent.VK_DOWN) {
-        cntr.shiftDownAttempt();
-      }
-
-      // Rotate
-      else if (key == KeyEvent.VK_Z) {
-        cntr.rotateLeftAttempt();
-      }
-      else if (key == KeyEvent.VK_X) {
-        cntr.rotateRightAttempt();
-      }
-
-      // Drop
-      else if (key == KeyEvent.VK_SPACE) {
-        cntr.dropAttempt();
-      }
-
-      // Pause
-      else if (key == KeyEvent.VK_P) {
-        cntr.pause();
-      }
-
-      else {}
-    }
-
-    public void keyTyped(KeyEvent e) {}
-    public void keyReleased(KeyEvent e) {}
   }
 
 }
