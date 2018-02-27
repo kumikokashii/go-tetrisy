@@ -161,4 +161,29 @@ public class Manager {
     }
   }
 
+  public void checkPieceIsOver() {
+    // If right below is a filled square, it's over
+    for (int y = piece.y; y < (piece.y + piece.block.yLen); y++) {
+      if (y < 0) {
+        continue;
+      }
+      for (int x = piece.x; x < (piece.x + piece.block.xLen); x++) {
+        if (piece.block.isFilled(y - piece.y, x - piece.x)) {
+          if (((y + 1) == grid.h) || (grid.isFilled(y + 1, x))) {
+            piece.setIsOver(true);
+            return;
+          }
+        }
+      }
+    }
+  }
 }
+
+
+
+
+
+
+
+
+

@@ -3,6 +3,7 @@ public class Piece {
   public Block block;
   public int y;
   public int x;
+  public boolean isOver;
 
   public Piece() {}
 
@@ -10,7 +11,12 @@ public class Piece {
     this.block = block;
     y = 0;  // Write later
     x = 3;  // Write later
+    isOver = false;
   }   
+
+  public void setIsOver(boolean isOver) {
+    this.isOver = isOver;
+  }
 
   public void rotateRight() {
     y += block.getRotateShiftY();

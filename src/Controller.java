@@ -39,10 +39,17 @@ public class Controller {
 
   public void dropAttempt() {
     m.dropPiece();
-    uiGrid.repaint();
+    m.updateGrid();
+    bringInNewPiece();
   }
 
   public void pause() {
     System.out.println("PAUSE");  // Write later
+  }
+
+  public void bringInNewPiece() {
+    m.setupNewPiece();
+    uiGrid.setPiece();
+    uiGrid.repaint();
   }
 }

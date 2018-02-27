@@ -12,15 +12,11 @@ public class UIGrid extends JPanel {
     m.updateGrid();
     System.out.println(m.getGrid());
 
-    m.setupNewPiece();
-
     Controller controller = new Controller(m);
     JFrame window = new JFrame("Go Tetrisy");
-    UIGrid uiGrid = new UIGrid(30, m.getGrid(), controller);
+    UIGrid uiGrid = new UIGrid(30, m, controller);
     controller.setUIGrid(uiGrid);
-
-    System.out.println(m.getPiece());
-    uiGrid.setPiece(m.getPiece());
+    controller.bringInNewPiece();
 
     window.setContentPane(uiGrid);
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,9 +28,14 @@ public class UIGrid extends JPanel {
   private final int h;
   private final int w;
   private final int side;
-  private final Grid grid;
+  private final Manager m;
+  private Grid grid;
   private Piece piece;
   private final Controller controller;
+
+  public void setPiece() {
+    this.piece = m.getPiece();
+  }
 
   public class uiGridKeyListener implements KeyListener {
 
@@ -77,19 +78,17 @@ public class UIGrid extends JPanel {
     public void keyReleased(KeyEvent e) {}
   }
 
-  public UIGrid(int side, Grid grid, Controller controller) {
+  public UIGrid(int side, Manager m, Controller controller) {
+    this.m = m;
+    this.grid = m.getGrid();
     this.h = grid.h;
     this.w = grid.w;
     this.side = side;
-    this.grid = grid;
     this.controller = controller;
+    this.piece = piece;
 
     addKeyListener(new uiGridKeyListener());
     setFocusable(true);
-  }
-
-  public void setPiece(Piece piece) {
-    this.piece = piece;
   }
 
   public void paintComponent(Graphics g) {
