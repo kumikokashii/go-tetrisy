@@ -173,7 +173,7 @@ public class Manager {
       }
       for (int x = piece.x; x < (piece.x + piece.block.xLen); x++) {
         if (piece.block.isFilled(y - piece.y, x - piece.x)) {
-          grid.fill(y, x);
+          grid.fill(y, x, piece.getBlockName());
         }
       }
     }

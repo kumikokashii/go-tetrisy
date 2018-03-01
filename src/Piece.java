@@ -1,6 +1,7 @@
 
 public class Piece {
   public Block block;
+  public BlockName blockName;
   public int y;
   public int x;
 
@@ -8,8 +9,13 @@ public class Piece {
 
   public Piece(Block block) {
     this.block = block;
+    blockName = block.name;
     y = 0;  // Write later
     x = 3;  // Write later
+  }
+
+  public BlockName getBlockName() {
+    return blockName;
   }
 
   public void shiftX(int value) {
@@ -41,6 +47,7 @@ public class Piece {
   public Piece copy() {
     Piece newPiece = new Piece();
     newPiece.block = block;
+    newPiece.blockName = blockName;
     newPiece.y = y;
     newPiece.x = x;
     return newPiece;

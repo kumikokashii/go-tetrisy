@@ -3,34 +3,53 @@ import java.util.*;
 
 
 public enum Block {
-  BAR_0(barShape_0()),
-  BAR_1(barShape_1()),
-  L_0(lShape_0()),
-  L_1(lShape_1()),
-  L_2(lShape_2()),
-  L_3(lShape_3()),
-  FLIP_L_0(flipLShape_0()),
-  FLIP_L_1(flipLShape_1()),
-  FLIP_L_2(flipLShape_2()),
-  FLIP_L_3(flipLShape_3()),
-  BOX(boxShape()),
-  S_0(sShape_0()),
-  S_1(sShape_1()),
-  Z_0(zShape_0()),
-  Z_1(zShape_1()),
-  T_0(tShape_0()),
-  T_1(tShape_1()),
-  T_2(tShape_2()),
-  T_3(tShape_3());
+  BAR_0(barShape_0(), BlockName.BAR),
+  BAR_1(barShape_1(), BlockName.BAR),
+  L_0(lShape_0(), BlockName.L),
+  L_1(lShape_1(), BlockName.L),
+  L_2(lShape_2(), BlockName.L),
+  L_3(lShape_3(), BlockName.L),
+  FLIP_L_0(flipLShape_0(), BlockName.FLIP_L),
+  FLIP_L_1(flipLShape_1(), BlockName.FLIP_L),
+  FLIP_L_2(flipLShape_2(), BlockName.FLIP_L),
+  FLIP_L_3(flipLShape_3(), BlockName.FLIP_L),
+  BOX(boxShape(), BlockName.BOX),
+  S_0(sShape_0(), BlockName.S),
+  S_1(sShape_1(), BlockName.S),
+  Z_0(zShape_0(), BlockName.Z),
+  Z_1(zShape_1(), BlockName.Z),
+  T_0(tShape_0(), BlockName.T),
+  T_1(tShape_1(), BlockName.T),
+  T_2(tShape_2(), BlockName.T),
+  T_3(tShape_3(), BlockName.T);
 
-  public final List<List<Integer>> shape;
+  public List<List<BlockName>> shape;
+  public final BlockName name;
   public final int yLen;
   public final int xLen;
 
-  private Block(List<List<Integer>> shape) {
-    this.shape = shape;
-    this.yLen = shape.size();
-    this.xLen = shape.get(0).size();
+  private Block(List<List<Integer>> shapeInt, BlockName blockName) {
+    name = blockName;
+    yLen = shapeInt.size();
+    xLen = shapeInt.get(0).size();
+    initShape(shapeInt);
+  }
+
+  public void initShape(List<List<Integer>> shapeInt) {
+    shape = new ArrayList<>();
+    for (int y = 0; y < yLen; y++) {
+      List<Integer> rowInt = shapeInt.get(y);
+      List<BlockName> row = new ArrayList<>();
+      for (int x = 0; x < xLen; x++) {
+        if (rowInt.get(x) == 0) {
+          row.add(null);
+        }
+        else {
+          row.add(name);
+        }
+      }
+      shape.add(row);
+    }
   }
 
   private static Map<Block, Block> rightRotated = initRightRotated();
@@ -149,8 +168,8 @@ public enum Block {
   }
 
   public boolean isFilled(int y, int x) {
-    int value = shape.get(y).get(x);
-    return (value == 1);
+    BlockName blockName = shape.get(y).get(x);
+    return (blockName != null);
   }
 
   public String toString() {

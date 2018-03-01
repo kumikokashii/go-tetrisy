@@ -6,15 +6,16 @@ import javax.swing.*;
 public class UIGrid extends JPanel {
   public static int DEFAULT_SIDE = 30;
 
+  private ColorScheme colorScheme;
   private int side;
   private Manager mngr;
   private Grid grid;
   private int h;
   private int w;
   private Piece piece;
-  private Controller cntr;
 
   public UIGrid() {
+    colorScheme = ColorScheme.DEFAULT;
     side = DEFAULT_SIDE;
   }
 
@@ -23,10 +24,6 @@ public class UIGrid extends JPanel {
     grid = mngr.getGrid();
     h = grid.h;
     w = grid.w;
-  }
-
-  public void setController(Controller cntr) {
-    this.cntr = cntr;
   }
 
   public void setPiece() {
@@ -61,6 +58,7 @@ public class UIGrid extends JPanel {
     for (int y = 0; y < h; y++) {
       for (int x = 0; x < w; x++) {
         if (grid.isFilled(y, x)) {
+          g.setColor(colorScheme.getColor(grid.getBlockName(y, x)));
           g.fillRect(x * side, y * side, side, side);
         }
       }
@@ -68,7 +66,7 @@ public class UIGrid extends JPanel {
   }
 
   public void drawPiece(Graphics g) {
-    g.setColor(Color.BLUE);
+    g.setColor(colorScheme.getColor(piece.getBlockName()));
 
     for (int y = piece.y; y < (piece.y + piece.block.yLen); y++) {
       if (y < 0) {

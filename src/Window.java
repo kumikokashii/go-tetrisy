@@ -44,7 +44,6 @@ public class Window extends JFrame implements KeyListener {
 
   public void setController(Controller cntr) {
     this.cntr = cntr;
-    uiGrid.setController(cntr);
   }
 
   public class repaintTimerActionListener implements ActionListener {

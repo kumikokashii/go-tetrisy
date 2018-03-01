@@ -2,7 +2,7 @@
 import java.util.*;
 
 
-public class Grid extends ArrayList<ArrayList<Integer>> {
+public class Grid extends ArrayList<ArrayList<BlockName>> {
   public static int DEFAULT_H = 20;
   public static int DEFAULT_W = 10;
 
@@ -18,10 +18,14 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
     this.h = h;
     this.w = w;
 
-    List<Integer> row = getEmptyRow();
+    List<BlockName> row = getEmptyRow();
     for (int y = 0; y < h; y++) {
-      add(new ArrayList<Integer>(row));
+      add(new ArrayList<BlockName>(row));
     }
+  }
+
+  public BlockName getBlockName(int y, int x) {
+    return get(y).get(x);
   }
 
   public String toString() {
@@ -32,26 +36,26 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
     return s;
   }
 
-  public List<Integer> getEmptyRow() {
-    List<Integer> row = new ArrayList<Integer>();
+  public List<BlockName> getEmptyRow() {
+    List<BlockName> row = new ArrayList<>();
     for (int x = 0; x < w; x++) {
-      row.add(0);
+      row.add(null);
     }
     return row;
   }
 
   public boolean isFilled(int y, int x) {
-    int value = get(y).get(x);
-    return (value == 1);
+    BlockName blockName = get(y).get(x);
+    return (blockName != null);
   }
 
-  public void fill(int y, int x) {
-    get(y).set(x, 1);
+  public void fill(int y, int x, BlockName blockName) {
+    get(y).set(x, blockName);
   }
 
   public boolean rowIsFilled(int y) {
-    for (int value : get(y)) {
-      if (value == 0) {
+    for (BlockName blockName : get(y)) {
+      if (blockName == null) {
         return false;
       }
     }
@@ -78,9 +82,9 @@ public class Grid extends ArrayList<ArrayList<Integer>> {
 
   public void addRows() {
     int n = h - this.size();
-    List<Integer> row = getEmptyRow();
+    List<BlockName> row = getEmptyRow();
     for (int i = 0; i < n; i++) {
-      add(0, new ArrayList<Integer>(row));
+      add(0, new ArrayList<BlockName>(row));
     }
   }
 
