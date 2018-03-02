@@ -15,7 +15,7 @@ public class UIGrid extends JPanel {
   private Piece piece;
 
   public UIGrid() {
-    colorScheme = ColorScheme.MONO;
+    colorScheme = ColorScheme.DEFAULT;
     side = DEFAULT_SIDE;
   }
 
@@ -58,26 +58,37 @@ public class UIGrid extends JPanel {
     for (int y = 0; y < h; y++) {
       for (int x = 0; x < w; x++) {
         if (grid.isFilled(y, x)) {
-          g.setColor(colorScheme.getColor(grid.getBlockName(y, x)));
-          g.fillRect(x * side, y * side, side, side);
+          drawSquare(x, y, grid.getBlockName(y, x), g);
         }
       }
     }
   }
 
   public void drawPiece(Graphics g) {
-    g.setColor(colorScheme.getColor(piece.getBlockName()));
-
     for (int y = piece.y; y < (piece.y + piece.block.yLen); y++) {
       if (y < 0) {
         continue;
       }
       for (int x = piece.x; x < (piece.x + piece.block.xLen); x++) {
         if (piece.block.isFilled(y - piece.y, x - piece.x)) {
-          g.fillRect(x * side, y * side, side, side);
+          drawSquare(x, y, piece.getBlockName(), g);
         }
       }
     }
+  }
+
+  public void drawSquare(int x, int y, BlockName blockName, Graphics g) {
+    Color fillColor = colorScheme.getFillColor(blockName);
+    Color brightColor = colorScheme.getBrightColor(blockName);
+    Color darkColor = colorScheme.getDarkColor(blockName);
+
+    g.setColor(fillColor);
+    g.fillRect(x * side, y * side, side, side);
+    g.setColor(brightColor);
+    g.drawLine(x * side, y * side + 1, (x + 1) * side, y * side + 1);
+    //g.setColor(darkColor);
+    //g.drawLine(x * side, y * side + 1, (x + 1) * side, y * side + 1);
+
   }
 
 }
