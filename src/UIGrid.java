@@ -15,7 +15,7 @@ public class UIGrid extends JPanel {
   private Piece piece;
 
   public UIGrid() {
-    colorScheme = ColorScheme.DEFAULT;
+    colorScheme = ColorScheme.MONO;
     side = DEFAULT_SIDE;
   }
 

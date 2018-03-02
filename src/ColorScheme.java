@@ -5,8 +5,8 @@ import java.awt.Color;
 
 public enum ColorScheme {
   DEFAULT(defaultFillMap()),
-  PASTEL(pastelFillMap());
-  //MONO();
+  PASTEL(pastelFillMap()),
+  MONO(monoFillMap());
 
   private Map<BlockName, Color> blockNameToColor;
 
@@ -41,4 +41,17 @@ public enum ColorScheme {
     map.put(BlockName.T, new Color((float) 0.8, (float) 0.6, (float) 1));  // Purple
     return map;
   }
+
+  private static Map<BlockName, Color> monoFillMap() {
+    Map<BlockName, Color> map = new HashMap<>();
+    map.put(BlockName.BAR, new Color((float) 0.125, (float) 0.125, (float) 0.125));
+    map.put(BlockName.L, new Color((float) 0.25, (float) 0.25, (float) 0.25));
+    map.put(BlockName.FLIP_L, new Color((float) 0.375, (float) 0.375, (float) 0.375));
+    map.put(BlockName.BOX, new Color((float) 0.5, (float) 0.5, (float) 0.5));
+    map.put(BlockName.S, new Color((float) 0.625, (float) 0.625, (float) 0.625));
+    map.put(BlockName.Z, new Color((float) 0.75, (float) 0.75, (float) 0.75));
+    map.put(BlockName.T, new Color((float) 0.875, (float) 0.875, (float) 0.875));
+    return map;
+  }
+
 }
