@@ -37,7 +37,7 @@ public class Controller implements GameOverEventListener {
 
   public void setGameOn() {
     gameStatus = GameStatus.ON;
-    mngr.setTimerOn();
+    mngr.startGame();
     window.startGame(); 
   }
 
@@ -77,8 +77,7 @@ public class Controller implements GameOverEventListener {
   }
 
   public void proceeKeyPressed(int key) {
-
-    if (gameStatus == GameStatus.STARTING) {
+    if ((gameStatus == GameStatus.STARTING) || (gameStatus == GameStatus.GAMEOVER)) {
       if (key == KeyEvent.VK_S) {
         setGameOn();
         return;
@@ -120,6 +119,20 @@ public class Controller implements GameOverEventListener {
 
       else {}
     }
+
+    if (gameStatus != GameStatus.ON) {
+      if (key == KeyEvent.VK_1) {
+        window.setGridColorScheme(ColorScheme.DEFAULT);
+      }
+      else if (key == KeyEvent.VK_2) {
+        window.setGridColorScheme(ColorScheme.PASTEL);
+      }
+      else if (key == KeyEvent.VK_3) {
+        window.setGridColorScheme(ColorScheme.MONO);
+      }
+      else {}
+    }
+
 
   }
 

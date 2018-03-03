@@ -5,6 +5,8 @@ import javax.swing.Timer;
 import java.awt.event.*;
 
 public class Manager {
+  public static int DEFAULT_GRID_H = 20;
+  public static int DEFAULT_GRID_W = 10;
   public static int DEFAULT_DROP_EVERY = 1000;  // 1000 milliseconds = 1 sec
   
   private static Manager mngr = null;
@@ -16,6 +18,8 @@ public class Manager {
     return mngr;
   }
 
+  private int grid_h;
+  private int grid_w;
   private Grid grid;
   private List<Block> blocks;
   private int blocks_size;
@@ -26,7 +30,9 @@ public class Manager {
   private List<GameOverEventListener> gameOverEventListeners = new ArrayList<>();
 
   private Manager() {
-    grid = Grid.getDefault();
+    grid_h = DEFAULT_GRID_H;
+    grid_w = DEFAULT_GRID_W;
+    grid = new Grid(grid_h, grid_w);
     blocks = Arrays.asList(Block.values()); 
     blocks_size = blocks.size();
     piece = null;
@@ -36,6 +42,13 @@ public class Manager {
 
   public void addGameOverEventListner(GameOverEventListener listener) {
     gameOverEventListeners.add(listener);
+  }
+
+  public void startGame() {
+    clearGrid();
+    piece = null;
+    gameIsOver = false;
+    dropTimer.start();
   }
 
   public class dropTimerActionListener implements ActionListener {
@@ -68,8 +81,8 @@ public class Manager {
     }
   }
 
-  public void setTimerOn() {
-    dropTimer.start();
+  public void clearGrid() {
+    grid = new Grid(grid_h, grid_w);
   }
 
   public void toggleTimer() {

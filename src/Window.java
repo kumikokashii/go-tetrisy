@@ -26,7 +26,7 @@ public class Window extends JFrame implements KeyListener {
   private NewGameMenu newGameMenu;
   private PauseMenu pauseMenu;
   private GameOverMenu gameOverMenu;
-  private java.util.List<JPanel> menus;
+  private List<JPanel> menus;
   private Manager mngr;
   private Controller cntr;
   private Timer repaintTimer;
@@ -64,6 +64,10 @@ public class Window extends JFrame implements KeyListener {
     this.cntr = cntr;
   }
 
+  public void resetGridPointer() {
+    uiGrid.resetPointer();
+  }
+
   public class repaintTimerActionListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
       repaint();
@@ -82,6 +86,7 @@ public class Window extends JFrame implements KeyListener {
   }
 
   public void startGame() {
+    resetGridPointer();
     onlyShow(null);
     repaintTimer.start();
   }
@@ -99,6 +104,11 @@ public class Window extends JFrame implements KeyListener {
     else {
       repaintTimer.start();
     }
+  }
+
+  public void setGridColorScheme(ColorScheme colorScheme) {
+    uiGrid.setColorScheme(colorScheme);
+    uiGrid.repaint();
   }
 
   public void keyPressed(KeyEvent e) {

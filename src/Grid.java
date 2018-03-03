@@ -88,6 +88,9 @@ public class Grid extends ArrayList<ArrayList<BlockName>> {
     }
   }
 
+  public void emptyAll() {
+    
+  }
 }
 
 

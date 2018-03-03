@@ -15,7 +15,7 @@ public class UIGrid extends JPanel {
   private Piece piece;
 
   public UIGrid() {
-    colorScheme = ColorScheme.MONO;
+    colorScheme = ColorScheme.DEFAULT;
     side = DEFAULT_SIDE;
   }
 
@@ -28,6 +28,14 @@ public class UIGrid extends JPanel {
 
   public void setPiece() {
     piece = mngr.getPiece();
+  }
+
+  public void resetPointer() {
+    grid = mngr.getGrid();
+  }
+
+  public void setColorScheme(ColorScheme colorScheme) {
+    this.colorScheme = colorScheme;
   }
 
   public void paintComponent(Graphics g) {
