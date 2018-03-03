@@ -41,30 +41,6 @@ public class Controller implements GameOverEventListener {
     window.startGame(); 
   }
 
-  public void shiftLeftAttempt() {
-    mngr.shiftPieceX(-1); 
-  }
-
-  public void shiftRightAttempt() {
-    mngr.shiftPieceX(1);
-  }
-
-  public void shiftDownAttempt() {
-    mngr.shiftPieceY(1);
-  }
-
-  public void rotateLeftAttempt() {
-    mngr.rotatePieceLeft();
-  }
-
-  public void rotateRightAttempt() {
-    mngr.rotatePieceRight();
-  }
-
-  public void dropAttempt() {
-    mngr.dropPiece();
-  }
-
   public void pauseOrResume() {
     if (gameStatus == GameStatus.ON) {
       gameStatus = GameStatus.PAUSED;
@@ -95,26 +71,26 @@ public class Controller implements GameOverEventListener {
     if (gameStatus == GameStatus.ON) {
       // Shift
       if (key == KeyEvent.VK_LEFT) {
-        shiftLeftAttempt();
+        mngr.shiftPieceX(-1);
       }
       else if (key == KeyEvent.VK_RIGHT) {
-        shiftRightAttempt();
+        mngr.shiftPieceX(1);
       }
       else if (key == KeyEvent.VK_DOWN) {
-        shiftDownAttempt();
+        mngr.shiftPieceY(1);
       }
 
       // Rotate
       else if (key == KeyEvent.VK_Z) {
-        rotateLeftAttempt();
+        mngr.rotatePieceLeft();
       }
       else if (key == KeyEvent.VK_X) {
-        rotateRightAttempt();
+        mngr.rotatePieceRight();
       }
 
       // Drop
       else if (key == KeyEvent.VK_SPACE) {
-        dropAttempt();
+        mngr.dropPiece();
       }
 
       else {}
@@ -133,7 +109,11 @@ public class Controller implements GameOverEventListener {
       else {}
     }
 
-
+    if ((gameStatus == GameStatus.STARTING) || (gameStatus == GameStatus.GAMEOVER)) {
+      if (key == KeyEvent.VK_C) {
+        window.showCustomizeSizeWindow();
+      }
+    }
   }
 
 }
