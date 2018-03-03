@@ -70,73 +70,73 @@ public enum ColorScheme {
 
   private static Map<BlockName, Color> defaultBrightMap() {
     Map<BlockName, Color> map = new HashMap<>();
-    map.put(BlockName.BAR, new Color((float) 0, (float) 1, (float) 1));  // Light blue
-    map.put(BlockName.L, new Color((float) 1, (float) 0.5, (float) 0));  // Orange
-    map.put(BlockName.FLIP_L, new Color((float) 0, (float) 0, (float) 1));  // Blue
-    map.put(BlockName.BOX, new Color((float) 1, (float) 1, (float) 0));  // Yellow
-    map.put(BlockName.S, new Color((float) 0, (float) 1, (float) 0));  // Bright green
-    map.put(BlockName.Z, new Color((float) 1, (float) 0, (float) 0));  // Red
-    map.put(BlockName.T, new Color((float) 0.5, (float) 0, (float) 1));  // Purple
+    map.put(BlockName.BAR, new Color((float) 0.4, (float) 1, (float) 1));  // Light blue
+    map.put(BlockName.L, new Color((float) 1, (float) 0.7, (float) 0.4));  // Orange
+    map.put(BlockName.FLIP_L, new Color((float) 0.4, (float) 0.4, (float) 1));  // Blue
+    map.put(BlockName.BOX, new Color((float) 1, (float) 1, (float) 0.4));  // Yellow
+    map.put(BlockName.S, new Color((float) 0.4, (float) 1, (float) 0.4));  // Bright green
+    map.put(BlockName.Z, new Color((float) 1, (float) 0.4, (float) 0.4));  // Red
+    map.put(BlockName.T, new Color((float) 0.7, (float) 0.4, (float) 1));  // Purple
     return map;
   }
 
   private static Map<BlockName, Color> pastelBrightMap() {
     Map<BlockName, Color> map = new HashMap<>();
-    map.put(BlockName.BAR, new Color((float) 0.6, (float) 1, (float) 1));  // Light blue
-    map.put(BlockName.L, new Color((float) 1, (float) 0.8, (float) 0.6));  // Orange
-    map.put(BlockName.FLIP_L, new Color((float) 0.6, (float) 0.6, (float) 1));  // Blue
-    map.put(BlockName.BOX, new Color((float) 1, (float) 1, (float) 0.6));  // Yellow
-    map.put(BlockName.S, new Color((float) 0.6, (float) 1, (float) 0.6));  // Bright green
-    map.put(BlockName.Z, new Color((float) 1, (float) 0.6, (float) 0.6));  // Red
-    map.put(BlockName.T, new Color((float) 0.8, (float) 0.6, (float) 1));  // Purple
+    map.put(BlockName.BAR, new Color((float) 0.8, (float) 1, (float) 1));  // Light blue
+    map.put(BlockName.L, new Color((float) 1, (float) 0.9, (float) 0.8));  // Orange
+    map.put(BlockName.FLIP_L, new Color((float) 0.8, (float) 0.8, (float) 1));  // Blue
+    map.put(BlockName.BOX, new Color((float) 1, (float) 1, (float) 0.8));  // Yellow
+    map.put(BlockName.S, new Color((float) 0.8, (float) 1, (float) 0.8));  // Bright green
+    map.put(BlockName.Z, new Color((float) 1, (float) 0.8, (float) 0.8));  // Red
+    map.put(BlockName.T, new Color((float) 0.9, (float) 0.8, (float) 1));  // Purple
     return map;
   }
 
   private static Map<BlockName, Color> monoBrightMap() {
     Map<BlockName, Color> map = new HashMap<>();
-    map.put(BlockName.BAR, new Color((float) 0.125, (float) 0.125, (float) 0.125));
-    map.put(BlockName.L, new Color((float) 0.25, (float) 0.25, (float) 0.25));
-    map.put(BlockName.FLIP_L, new Color((float) 0.375, (float) 0.375, (float) 0.375));
-    map.put(BlockName.BOX, new Color((float) 0.5, (float) 0.5, (float) 0.5));
-    map.put(BlockName.S, new Color((float) 0.625, (float) 0.625, (float) 0.625));
-    map.put(BlockName.Z, new Color((float) 0.75, (float) 0.75, (float) 0.75));
-    map.put(BlockName.T, new Color((float) 0.875, (float) 0.875, (float) 0.875));
+    map.put(BlockName.BAR, new Color((float) 0.25, (float) 0.25, (float) 0.25));
+    map.put(BlockName.L, new Color((float) 0.375, (float) 0.375, (float) 0.375));
+    map.put(BlockName.FLIP_L, new Color((float) 0.5, (float) 0.5, (float) 0.5));
+    map.put(BlockName.BOX, new Color((float) 0.625, (float) 0.625, (float) 0.625));
+    map.put(BlockName.S, new Color((float) 0.75, (float) 0.75, (float) 0.75));
+    map.put(BlockName.Z, new Color((float) 0.875, (float) 0.875, (float) 0.875));
+    map.put(BlockName.T, new Color((float) 1, (float) 1, (float) 1));
     return map;
   }
 
   private static Map<BlockName, Color> defaultDarkMap() {
     Map<BlockName, Color> map = new HashMap<>();
-    map.put(BlockName.BAR, new Color((float) 0, (float) 1, (float) 1));  // Light blue
-    map.put(BlockName.L, new Color((float) 1, (float) 0.5, (float) 0));  // Orange
-    map.put(BlockName.FLIP_L, new Color((float) 0, (float) 0, (float) 1));  // Blue
-    map.put(BlockName.BOX, new Color((float) 1, (float) 1, (float) 0));  // Yellow
-    map.put(BlockName.S, new Color((float) 0, (float) 1, (float) 0));  // Bright green
-    map.put(BlockName.Z, new Color((float) 1, (float) 0, (float) 0));  // Red
-    map.put(BlockName.T, new Color((float) 0.5, (float) 0, (float) 1));  // Purple
+    map.put(BlockName.BAR, new Color((float) 0, (float) 0.6, (float) 0.6));  // Light blue
+    map.put(BlockName.L, new Color((float) 0.6, (float) 0.3, (float) 0));  // Orange
+    map.put(BlockName.FLIP_L, new Color((float) 0, (float) 0, (float) 0.6));  // Blue
+    map.put(BlockName.BOX, new Color((float) 0.6, (float) 0.6, (float) 0));  // Yellow
+    map.put(BlockName.S, new Color((float) 0, (float) 0.6, (float) 0));  // Bright green
+    map.put(BlockName.Z, new Color((float) 0.6, (float) 0, (float) 0));  // Red
+    map.put(BlockName.T, new Color((float) 0.3, (float) 0, (float) 0.6));  // Purple
     return map;
   }
 
   private static Map<BlockName, Color> pastelDarkMap() {
     Map<BlockName, Color> map = new HashMap<>();
-    map.put(BlockName.BAR, new Color((float) 0.6, (float) 1, (float) 1));  // Light blue
-    map.put(BlockName.L, new Color((float) 1, (float) 0.8, (float) 0.6));  // Orange
-    map.put(BlockName.FLIP_L, new Color((float) 0.6, (float) 0.6, (float) 1));  // Blue
-    map.put(BlockName.BOX, new Color((float) 1, (float) 1, (float) 0.6));  // Yellow
-    map.put(BlockName.S, new Color((float) 0.6, (float) 1, (float) 0.6));  // Bright green
-    map.put(BlockName.Z, new Color((float) 1, (float) 0.6, (float) 0.6));  // Red
-    map.put(BlockName.T, new Color((float) 0.8, (float) 0.6, (float) 1));  // Purple
+    map.put(BlockName.BAR, new Color((float) 0.4, (float) 1, (float) 1));  // Light blue
+    map.put(BlockName.L, new Color((float) 1, (float) 0.7, (float) 0.4));  // Orange
+    map.put(BlockName.FLIP_L, new Color((float) 0.4, (float) 0.4, (float) 1));  // Blue
+    map.put(BlockName.BOX, new Color((float) 1, (float) 1, (float) 0.4));  // Yellow
+    map.put(BlockName.S, new Color((float) 0.4, (float) 1, (float) 0.4));  // Bright green
+    map.put(BlockName.Z, new Color((float) 1, (float) 0.4, (float) 0.4));  // Red
+    map.put(BlockName.T, new Color((float) 0.7, (float) 0.4, (float) 1));  // Purple
     return map;
   }
 
   private static Map<BlockName, Color> monoDarkMap() {
     Map<BlockName, Color> map = new HashMap<>();
-    map.put(BlockName.BAR, new Color((float) 0.125, (float) 0.125, (float) 0.125));
-    map.put(BlockName.L, new Color((float) 0.25, (float) 0.25, (float) 0.25));
-    map.put(BlockName.FLIP_L, new Color((float) 0.375, (float) 0.375, (float) 0.375));
-    map.put(BlockName.BOX, new Color((float) 0.5, (float) 0.5, (float) 0.5));
-    map.put(BlockName.S, new Color((float) 0.625, (float) 0.625, (float) 0.625));
-    map.put(BlockName.Z, new Color((float) 0.75, (float) 0.75, (float) 0.75));
-    map.put(BlockName.T, new Color((float) 0.875, (float) 0.875, (float) 0.875));
+    map.put(BlockName.BAR, new Color((float) 0, (float) 0, (float) 0));
+    map.put(BlockName.L, new Color((float) 0.125, (float) 0.125, (float) 0.125));
+    map.put(BlockName.FLIP_L, new Color((float) 0.25, (float) 0.25, (float) 0.25));
+    map.put(BlockName.BOX, new Color((float) 0.375, (float) 0.375, (float) 0.375));
+    map.put(BlockName.S, new Color((float) 0.5, (float) 0.5, (float) 0.5));
+    map.put(BlockName.Z, new Color((float) 0.625, (float) 0.625, (float) 0.625));
+    map.put(BlockName.T, new Color((float) 0.75, (float) 0.75, (float) 0.75));
     return map;
   }
 

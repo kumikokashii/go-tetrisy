@@ -15,7 +15,7 @@ public class UIGrid extends JPanel {
   private Piece piece;
 
   public UIGrid() {
-    colorScheme = ColorScheme.DEFAULT;
+    colorScheme = ColorScheme.PASTEL;
     side = DEFAULT_SIDE;
   }
 
@@ -84,11 +84,18 @@ public class UIGrid extends JPanel {
 
     g.setColor(fillColor);
     g.fillRect(x * side, y * side, side, side);
-    g.setColor(brightColor);
-    g.drawLine(x * side, y * side + 1, (x + 1) * side, y * side + 1);
-    //g.setColor(darkColor);
-    //g.drawLine(x * side, y * side + 1, (x + 1) * side, y * side + 1);
 
+    g.setColor(brightColor);  // left and top
+    for (int i = 0; i < 3; i++) {
+      g.drawLine(x * side + i, y * side, x * side + i, (y + 1) * side);
+      g.drawLine(x * side, y * side + i, (x + 1) * side, y * side + i);
+    }
+
+    g.setColor(darkColor);  // right and bottom
+    for (int i = 0; i < 3; i++) {
+      g.drawLine((x + 1) * side - i, y * side, (x + 1) * side - i, (y + 1) * side);
+      g.drawLine(x * side, (y + 1) * side - i, (x + 1) * side, (y + 1) * side - i);
+    }
   }
 
 }
