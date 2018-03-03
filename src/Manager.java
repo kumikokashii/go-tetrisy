@@ -56,7 +56,7 @@ public class Manager {
       checkGameOver();
       if (gameIsOver) {
         dropTimer.stop();
-        for (GameOverEventListener listener: gameOverEventListeners) {
+        for (GameOverEventListener listener : gameOverEventListeners) {
           listener.doWhenGameOver();
         }
         return;
