@@ -13,7 +13,7 @@ public class GoTetrisy {
     cntr.setWindow(window);
     
     window.setVisible(true);
-    cntr.setOn();
+    //cntr.setGameOn();
   }
 
 }

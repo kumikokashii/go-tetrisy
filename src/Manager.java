@@ -61,8 +61,17 @@ public class Manager {
     }
   }
 
-  public void setOn() {
+  public void setTimerOn() {
     dropTimer.start();
+  }
+
+  public void toggleTimer() {
+    if (dropTimer.isRunning()) {
+      dropTimer.stop();
+    }
+    else {
+      dropTimer.start();
+    }
   }
 
   public Grid getGrid() {
