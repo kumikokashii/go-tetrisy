@@ -23,6 +23,7 @@ public class Manager {
   private boolean gameIsOver;
   private boolean pieceIsOver;
   private Timer dropTimer;
+  private List<GameOverEventListener> gameOverEventListeners = new ArrayList<>();
 
   private Manager() {
     grid = Grid.getDefault();
@@ -31,6 +32,10 @@ public class Manager {
     piece = null;
     gameIsOver = false;
     dropTimer = new Timer(DEFAULT_DROP_EVERY, new dropTimerActionListener());
+  }
+
+  public void addGameOverEventListner(GameOverEventListener listener) {
+    gameOverEventListeners.add(listener);
   }
 
   public class dropTimerActionListener implements ActionListener {
@@ -51,7 +56,9 @@ public class Manager {
       checkGameOver();
       if (gameIsOver) {
         dropTimer.stop();
-        System.out.println("GAME OVER");
+        for (GameOverEventListener listener: gameOverEventListeners) {
+          listener.doWhenGameOver();
+        }
         return;
       }
 

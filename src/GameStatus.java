@@ -3,7 +3,7 @@ public enum GameStatus {
   STARTING,
   ON,
   PAUSED,
-  ENDED;
+  GAMEOVER;
 
   private GameStatus() {}
 }

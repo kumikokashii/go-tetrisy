@@ -22,6 +22,7 @@ public class Window extends JFrame implements KeyListener {
   private UIGrid uiGrid;
   private NewGameMenu newGameMenu;
   private PauseMenu pauseMenu;
+  private GameOverMenu gameOverMenu;
   private Manager mngr;
   private Controller cntr;
   private Timer repaintTimer;
@@ -31,6 +32,7 @@ public class Window extends JFrame implements KeyListener {
     uiGrid = new UIGrid();
     pauseMenu = new PauseMenu();
     newGameMenu = new NewGameMenu();
+    gameOverMenu = new GameOverMenu();
     
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
@@ -39,8 +41,10 @@ public class Window extends JFrame implements KeyListener {
 
     pauseMenu.setBounds(30, 30, pauseMenu.getWidth(), pauseMenu.getHeight());
     newGameMenu.setBounds(30, 30, newGameMenu.getWidth(), newGameMenu.getHeight());
+    gameOverMenu.setBounds(30, 30, gameOverMenu.getWidth(), newGameMenu.getHeight());
     uiGrid.add(pauseMenu);
     uiGrid.add(newGameMenu);
+    uiGrid.add(gameOverMenu);
 
     repaintTimer = new Timer(DEFAULT_REPAINT_EVERY, new repaintTimerActionListener());
 
@@ -66,11 +70,18 @@ public class Window extends JFrame implements KeyListener {
   public void showNewGameMenu() {
     newGameMenu.setVisible(true);
     pauseMenu.setVisible(false);
+    gameOverMenu.setVisible(false);
   }
 
   public void startGame() {
     pauseMenu.setVisible(false);
+    newGameMenu.setVisible(false);
     repaintTimer.start();
+  }
+
+  public void endGame() {
+    gameOverMenu.setVisible(true);
+    repaintTimer.stop();
   }
 
   public void toggleGameOnPaused() {
@@ -83,39 +94,10 @@ public class Window extends JFrame implements KeyListener {
     }
   }
 
+  
+
   public void keyPressed(KeyEvent e) {
-    int key = e.getKeyCode();
-
-    // Shift
-    if (key == KeyEvent.VK_LEFT) {
-      cntr.shiftLeftAttempt();
-    }
-    else if (key == KeyEvent.VK_RIGHT) {
-      cntr.shiftRightAttempt();
-    }
-    else if (key == KeyEvent.VK_DOWN) {
-      cntr.shiftDownAttempt();
-    }
-
-    // Rotate
-    else if (key == KeyEvent.VK_Z) {
-      cntr.rotateLeftAttempt();
-    }
-    else if (key == KeyEvent.VK_X) {
-      cntr.rotateRightAttempt();
-    }
-
-    // Drop
-    else if (key == KeyEvent.VK_SPACE) {
-      cntr.dropAttempt();
-    }
-
-    // Pause or Resume
-    else if (key == KeyEvent.VK_P) {
-      cntr.pauseOrResume();
-    }
-
-    else {}
+    cntr.proceeKeyPressed(e.getKeyCode());
   }
 
   public void keyTyped(KeyEvent e) {}
