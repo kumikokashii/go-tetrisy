@@ -23,9 +23,9 @@ public class Window extends JFrame implements KeyListener {
   }
 
   private UIGrid uiGrid;
-  private NewGameMenu newGameMenu;
-  private PauseMenu pauseMenu;
-  private GameOverMenu gameOverMenu;
+  private Menu newGameMenu;
+  private Menu pauseMenu;
+  private Menu gameOverMenu;
   private List<JPanel> menus;
   private Manager mngr;
   private Controller cntr;
@@ -34,9 +34,9 @@ public class Window extends JFrame implements KeyListener {
   private Window() {
     super("Go Tetrisy");
     uiGrid = new UIGrid();
-    newGameMenu = new NewGameMenu();
-    pauseMenu = new PauseMenu();
-    gameOverMenu = new GameOverMenu();
+    newGameMenu = Menu.getNewGame(); 
+    pauseMenu = Menu.getPause(); 
+    gameOverMenu = Menu.getGameOver(); 
     menus = new ArrayList<JPanel>(Arrays.asList(newGameMenu, pauseMenu, gameOverMenu));
     
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

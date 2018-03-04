@@ -58,6 +58,14 @@ public class Controller implements GameOverEventListener {
         setGameOn();
         return;
       }
+
+      if (key == KeyEvent.VK_C) {
+        window.showCustomizeSizeWindow();
+      }
+      else if (key == KeyEvent.VK_G) {
+        mngr.updateGridToDefault();
+      }
+      else {}
     }
 
     if ((gameStatus == GameStatus.ON) || (gameStatus == GameStatus.PAUSED)) {
@@ -107,12 +115,6 @@ public class Controller implements GameOverEventListener {
         window.setGridColorScheme(ColorScheme.MONO);
       }
       else {}
-    }
-
-    if ((gameStatus == GameStatus.STARTING) || (gameStatus == GameStatus.GAMEOVER)) {
-      if (key == KeyEvent.VK_C) {
-        window.showCustomizeSizeWindow();
-      }
     }
   }
 

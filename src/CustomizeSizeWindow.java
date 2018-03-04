@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.lang.NumberFormatException;
 
+
 public class CustomizeSizeWindow extends JFrame {
 
   public static int DEFAULT_WIDTH = 200;
