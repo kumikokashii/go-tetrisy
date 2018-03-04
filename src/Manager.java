@@ -81,6 +81,11 @@ public class Manager {
     }
   }
 
+  public void updateGridSize(int h, int w) {
+    grid_h = h;
+    grid_w = w;
+  }
+
   public void clearGrid() {
     grid = new Grid(grid_h, grid_w);
   }

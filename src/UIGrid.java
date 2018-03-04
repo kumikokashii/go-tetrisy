@@ -21,9 +21,7 @@ public class UIGrid extends JPanel {
 
   public void setManager(Manager mngr) {
     this.mngr = mngr;
-    grid = mngr.getGrid();
-    h = grid.h;
-    w = grid.w;
+    resetPointer();
   }
 
   public void setPiece() {
@@ -32,6 +30,8 @@ public class UIGrid extends JPanel {
 
   public void resetPointer() {
     grid = mngr.getGrid();
+    h = grid.h;
+    w = grid.w;
   }
 
   public void setColorScheme(ColorScheme colorScheme) {

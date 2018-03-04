@@ -116,4 +116,7 @@ public class Controller implements GameOverEventListener {
     }
   }
 
+  public void updateGridSize(int h, int w) {
+    mngr.updateGridSize(h, w);
+  }
 }
