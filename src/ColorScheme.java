@@ -17,7 +17,7 @@ public enum ColorScheme {
                       Map<BlockName, Color> darkColorMap) {
     this.fillColorMap = fillColorMap; 
     this.brightColorMap = brightColorMap; 
-    this.darkColorMap = darkColorMap; 
+    this.darkColorMap = darkColorMap;
   }
 
   public Color getFillColor(BlockName blockName) {
@@ -41,6 +41,7 @@ public enum ColorScheme {
     map.put(BlockName.S, new Color((float) 0, (float) 1, (float) 0));  // Bright green
     map.put(BlockName.Z, new Color((float) 1, (float) 0, (float) 0));  // Red
     map.put(BlockName.T, new Color((float) 0.5, (float) 0, (float) 1));  // Purple
+    map.put(BlockName.WALL, new Color((float) 0.25, (float) 0.25, (float) 0.25));  // Black
     return map;
   }
 
@@ -53,6 +54,7 @@ public enum ColorScheme {
     map.put(BlockName.S, new Color((float) 0.6, (float) 1, (float) 0.6));  // Bright green
     map.put(BlockName.Z, new Color((float) 1, (float) 0.6, (float) 0.6));  // Red
     map.put(BlockName.T, new Color((float) 0.8, (float) 0.6, (float) 1));  // Purple
+    map.put(BlockName.WALL, new Color((float) 0.625, (float) 0.625, (float) 0.625));  // Black
     return map;
   }
 
@@ -65,6 +67,7 @@ public enum ColorScheme {
     map.put(BlockName.S, new Color((float) 0.625, (float) 0.625, (float) 0.625));
     map.put(BlockName.Z, new Color((float) 0.75, (float) 0.75, (float) 0.75));
     map.put(BlockName.T, new Color((float) 0.875, (float) 0.875, (float) 0.875));
+    map.put(BlockName.WALL, new Color((float) 1, (float) 0.6, (float) 0.6));  // Red
     return map;
   }
 
@@ -77,6 +80,7 @@ public enum ColorScheme {
     map.put(BlockName.S, new Color((float) 0.4, (float) 1, (float) 0.4));  // Bright green
     map.put(BlockName.Z, new Color((float) 1, (float) 0.4, (float) 0.4));  // Red
     map.put(BlockName.T, new Color((float) 0.7, (float) 0.4, (float) 1));  // Purple
+    map.put(BlockName.WALL, new Color((float) 0.375, (float) 0.375, (float) 0.375));  // Black
     return map;
   }
 
@@ -89,6 +93,7 @@ public enum ColorScheme {
     map.put(BlockName.S, new Color((float) 0.8, (float) 1, (float) 0.8));  // Bright green
     map.put(BlockName.Z, new Color((float) 1, (float) 0.8, (float) 0.8));  // Red
     map.put(BlockName.T, new Color((float) 0.9, (float) 0.8, (float) 1));  // Purple
+    map.put(BlockName.WALL, new Color((float) 0.75, (float) 0.75, (float) 0.75));  // Black
     return map;
   }
 
@@ -101,6 +106,7 @@ public enum ColorScheme {
     map.put(BlockName.S, new Color((float) 0.75, (float) 0.75, (float) 0.75));
     map.put(BlockName.Z, new Color((float) 0.875, (float) 0.875, (float) 0.875));
     map.put(BlockName.T, new Color((float) 1, (float) 1, (float) 1));
+    map.put(BlockName.WALL, new Color((float) 1, (float) 0.8, (float) 0.8));  // Red
     return map;
   }
 
@@ -113,6 +119,7 @@ public enum ColorScheme {
     map.put(BlockName.S, new Color((float) 0, (float) 0.6, (float) 0));  // Bright green
     map.put(BlockName.Z, new Color((float) 0.6, (float) 0, (float) 0));  // Red
     map.put(BlockName.T, new Color((float) 0.3, (float) 0, (float) 0.6));  // Purple
+    map.put(BlockName.WALL, new Color((float) 0.125, (float) 0.125, (float) 0.125));  // Black
     return map;
   }
 
@@ -125,6 +132,7 @@ public enum ColorScheme {
     map.put(BlockName.S, new Color((float) 0.4, (float) 1, (float) 0.4));  // Bright green
     map.put(BlockName.Z, new Color((float) 1, (float) 0.4, (float) 0.4));  // Red
     map.put(BlockName.T, new Color((float) 0.7, (float) 0.4, (float) 1));  // Purple
+    map.put(BlockName.WALL, new Color((float) 0.5, (float) 0.5, (float) 0.5));  // Black
     return map;
   }
 
@@ -137,6 +145,7 @@ public enum ColorScheme {
     map.put(BlockName.S, new Color((float) 0.5, (float) 0.5, (float) 0.5));
     map.put(BlockName.Z, new Color((float) 0.625, (float) 0.625, (float) 0.625));
     map.put(BlockName.T, new Color((float) 0.75, (float) 0.75, (float) 0.75));
+    map.put(BlockName.WALL, new Color((float) 1, (float) 0.4, (float) 0.4));  // Red
     return map;
   }
 

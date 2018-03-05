@@ -6,7 +6,8 @@ public enum BlockName {
   BOX(),
   S(),
   Z(),
-  T();
+  T(),
+  WALL();
 
   private BlockName() {}
 }

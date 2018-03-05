@@ -88,9 +88,9 @@ public class UIGrid extends JPanel {
   }
 
   public void fillBottom(Graphics g) {
-    for (int y = h; y < 20; y++) {
+    for (int y = h; y < minHeight; y++) {
       for (int x = 0; x < w; x++) {
-        drawSquare(x, y, BlockName.L, g);
+        drawSquare(x, y, BlockName.WALL, g);
       }
     }
   }
