@@ -19,9 +19,11 @@ public class MenuPart extends JPanel {
   public static JPanel getControlsPanel() {
     MenuPart panel = new MenuPart();
     panel.addComp(get("Controls"));
-    panel.addComp(get("< \u2190 > Shift Left, < \u2192 > Shift Right"));
+    panel.addComp(get("< \u2190 > Shift Left"));
+    panel.addComp(get("< \u2192 > Shift Right"));
     panel.addComp(get("< \u2193 > Shift Down"));
-    panel.addComp(get("< z > Rotate Left, < x > Rotate Right"));
+    panel.addComp(get("< z > Rotate Left"));
+    panel.addComp(get("< x > Rotate Right"));
     panel.addComp(get("< Space Bar> Drop"));
     panel.addComp(get("< p > Pause"));
     return panel;

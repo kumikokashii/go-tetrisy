@@ -7,8 +7,6 @@ import java.lang.NumberFormatException;
 
 public class CustomizeSizeWindow extends JFrame {
 
-  public static int DEFAULT_WIDTH = 200;
-  public static int DEFAULT_HEIGHT = 100;
   public static int MIN = 10;
   public static int MAX = 50;
 
@@ -17,27 +15,26 @@ public class CustomizeSizeWindow extends JFrame {
     csw.setVisible(true);
   }
 
-  Controller cntr;
   InputsPanel inputsPanel = new InputsPanel();
-  ButtonsPanel buttonsPanel = new ButtonsPanel();
+  Controller cntr;
 
   public CustomizeSizeWindow(Controller cntr) {
     super("Go Tetrisy Customize Size");
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     JPanel cp = new JPanel();
-    //cp.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
-    setContentPane(cp);
-    setLayout(new GridBagLayout());
+    cp.setLayout(new GridBagLayout());
     GridBagConstraints c = new GridBagConstraints();
     c.gridy = 0;
     cp.add(new JLabel(String.format("Enter integers between %d and %d.", MIN, MAX)), c);
     c.gridy += 1;
     cp.add(inputsPanel, c);
     c.gridy += 1;
-    cp.add(buttonsPanel, c);
+    cp.add(new ButtonsPanel(), c);
 
+    setContentPane(cp);
     pack();
+
     this.cntr = cntr;
   }
 

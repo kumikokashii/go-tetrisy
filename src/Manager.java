@@ -44,6 +44,14 @@ public class Manager {
     gameOverEventListeners.add(listener);
   }
 
+  public int getGridW() {
+    return grid_w;
+  }
+
+  public int getGridH() {
+    return grid_h;
+  }
+
   public void startGame() {
     clearGrid();
     piece = null;

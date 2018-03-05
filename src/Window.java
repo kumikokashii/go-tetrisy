@@ -9,8 +9,6 @@ import java.awt.event.*;
 
 public class Window extends JFrame implements KeyListener {
 
-  public static int DEFAULT_WIDTH = 500;
-  public static int DEFAULT_HEIGHT = 650;
   public static int DEFAULT_REPAINT_EVERY = 100;  // 1000 milliseconds = 1 sec
 
   private static Window window = null;
@@ -28,6 +26,9 @@ public class Window extends JFrame implements KeyListener {
   private Menu gameOverMenu;
   private List<JPanel> menus;
   private Manager mngr;
+  private int gridSideSize;
+  private int menuW;
+  private int menuH;
   private Controller cntr;
   private Timer repaintTimer;
 
@@ -36,6 +37,7 @@ public class Window extends JFrame implements KeyListener {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     uiGrid = new UIGrid();
+    gridSideSize = uiGrid.getSide();
     setContentPane(uiGrid);
     uiGrid.setLayout(null);
 
@@ -44,7 +46,6 @@ public class Window extends JFrame implements KeyListener {
     gameOverMenu = Menu.getGameOver(); 
     menus = new ArrayList<JPanel>(Arrays.asList(newGameMenu, pauseMenu, gameOverMenu));
     for (JPanel menu : menus) {
-      menu.setBounds(30, 30, menu.getWidth(), menu.getHeight());
       uiGrid.add(menu);
     }
     
@@ -57,7 +58,9 @@ public class Window extends JFrame implements KeyListener {
   public void setManager(Manager mngr) {
     this.mngr = mngr;
     uiGrid.setManager(mngr);
-    pack();
+
+    initMenuSizeLocation();
+    refresh();
   }
 
   public void setController(Controller cntr) {
@@ -66,7 +69,24 @@ public class Window extends JFrame implements KeyListener {
 
   public void refresh() {
     uiGrid.resetPointer();
+    resetMenuLocation();
     pack();
+  }
+
+  public void initMenuSizeLocation() {
+    menuW = (mngr.getGridW() - 2) * gridSideSize;
+    menuH = (mngr.getGridH() - 2) * gridSideSize;
+
+    for (JPanel menu : menus) {
+      menu.setBounds(gridSideSize, gridSideSize, menuW, menuH);
+    }
+  }
+
+  public void resetMenuLocation() {
+    int menuX = ((mngr.getGridW() * gridSideSize) - menuW) / 2;
+    for (JPanel menu : menus) {
+      menu.setLocation(menuX, gridSideSize);
+    }
   }
 
   public class repaintTimerActionListener implements ActionListener {

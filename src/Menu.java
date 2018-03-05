@@ -5,9 +5,6 @@ import javax.swing.*;
 
 public class Menu extends JPanel {
 
-  public static int DEFAULT_WIDTH = 300;
-  public static int DEFAULT_HEIGHT = 500;
-
   public static Menu getNewGame() {
     Menu menu = new Menu();
     menu.addComp(MenuPart.getTitlePanel("NEW GAME", "Press < s > to START!"));
@@ -34,26 +31,13 @@ public class Menu extends JPanel {
     return menu;
   }
 
-  private int width;
-  private int height;
   private GridBagConstraints c;
 
   public Menu() {
     super();
-    width = DEFAULT_WIDTH;
-    height = DEFAULT_HEIGHT;
-    setPreferredSize(new Dimension(width, height));
     setLayout(new GridBagLayout());
     c = new GridBagConstraints();
     c.gridy = 0;
-  }
-
-  public int getWidth() {
-    return width;
-  }
-
-  public int getHeight() {
-    return height;
   }
 
   public void addComp(Component comp) {
