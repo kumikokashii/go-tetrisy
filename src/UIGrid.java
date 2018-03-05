@@ -32,6 +32,7 @@ public class UIGrid extends JPanel {
     grid = mngr.getGrid();
     h = grid.h;
     w = grid.w;
+    setPreferredSize(new Dimension(w * side, h * side));
   }
 
   public void setColorScheme(ColorScheme colorScheme) {

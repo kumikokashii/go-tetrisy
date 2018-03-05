@@ -19,23 +19,25 @@ public class CustomizeSizeWindow extends JFrame {
 
   Controller cntr;
   InputsPanel inputsPanel = new InputsPanel();
-  JButton cancelButton = new CancelButton();
-  JButton setButton = new SetButton();
+  ButtonsPanel buttonsPanel = new ButtonsPanel();
 
   public CustomizeSizeWindow(Controller cntr) {
     super("Go Tetrisy Customize Size");
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     JPanel cp = new JPanel();
-    cp.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
-    cp.add(new JLabel(String.format("Enter integers between %d and %d.", MIN, MAX)));
-    cp.add(inputsPanel);
-    cp.add(cancelButton);
-    cp.add(setButton);
-
+    //cp.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
     setContentPane(cp);
-    pack();
+    setLayout(new GridBagLayout());
+    GridBagConstraints c = new GridBagConstraints();
+    c.gridy = 0;
+    cp.add(new JLabel(String.format("Enter integers between %d and %d.", MIN, MAX)), c);
+    c.gridy += 1;
+    cp.add(inputsPanel, c);
+    c.gridy += 1;
+    cp.add(buttonsPanel, c);
 
+    pack();
     this.cntr = cntr;
   }
 
@@ -59,6 +61,7 @@ public class CustomizeSizeWindow extends JFrame {
 
     cntr.updateGridSize(heightInput, widthInput);
     dispose();
+
   }
 
   public boolean isOutOfRange(int i) {
@@ -73,8 +76,8 @@ public class CustomizeSizeWindow extends JFrame {
   }
 
   public class InputsPanel extends JPanel {
-    JTextField widthInput = new JTextField(4);
-    JTextField heightInput = new JTextField(4);
+    JTextField widthInput = new InputField(); 
+    JTextField heightInput = new InputField(); 
 
     public InputsPanel() {
       super();
@@ -82,6 +85,25 @@ public class CustomizeSizeWindow extends JFrame {
       add(widthInput);
       add(new JLabel("Height:"));
       add(heightInput);
+    }
+  }
+
+  public class InputField extends JTextField {
+    public InputField() {
+      super(4);
+      addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          processSetRequest();
+        }
+      });
+    }
+  }
+
+  public class ButtonsPanel extends JPanel {
+    public ButtonsPanel() {
+      super();
+      add(new CancelButton());
+      add(new SetButton());
     }
   }
 
@@ -106,5 +128,5 @@ public class CustomizeSizeWindow extends JFrame {
       });
     }
   }
-}
 
+}

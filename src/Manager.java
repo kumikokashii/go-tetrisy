@@ -82,13 +82,13 @@ public class Manager {
   }
 
   public void updateGridToDefault() {
-    grid_h = DEFAULT_GRID_H;
-    grid_w = DEFAULT_GRID_W; 
+    updateGridSize(DEFAULT_GRID_H, DEFAULT_GRID_W);
   }
 
   public void updateGridSize(int h, int w) {
     grid_h = h;
     grid_w = w;
+    clearGrid();
   }
 
   public void clearGrid() {

@@ -64,6 +64,7 @@ public class Controller implements GameOverEventListener {
       }
       else if (key == KeyEvent.VK_G) {
         mngr.updateGridToDefault();
+        window.refresh();
       }
       else {}
     }
@@ -120,5 +121,6 @@ public class Controller implements GameOverEventListener {
 
   public void updateGridSize(int h, int w) {
     mngr.updateGridSize(h, w);
+    window.refresh();
   }
 }

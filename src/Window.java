@@ -33,22 +33,21 @@ public class Window extends JFrame implements KeyListener {
 
   private Window() {
     super("Go Tetrisy");
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     uiGrid = new UIGrid();
+    setContentPane(uiGrid);
+    uiGrid.setLayout(null);
+
     newGameMenu = Menu.getNewGame(); 
     pauseMenu = Menu.getPause(); 
     gameOverMenu = Menu.getGameOver(); 
     menus = new ArrayList<JPanel>(Arrays.asList(newGameMenu, pauseMenu, gameOverMenu));
-    
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-    setContentPane(uiGrid);
-    uiGrid.setLayout(null);
-
     for (JPanel menu : menus) {
       menu.setBounds(30, 30, menu.getWidth(), menu.getHeight());
       uiGrid.add(menu);
     }
-
+    
     repaintTimer = new Timer(DEFAULT_REPAINT_EVERY, new repaintTimerActionListener());
 
     addKeyListener(this);
@@ -58,14 +57,16 @@ public class Window extends JFrame implements KeyListener {
   public void setManager(Manager mngr) {
     this.mngr = mngr;
     uiGrid.setManager(mngr);
+    pack();
   }
 
   public void setController(Controller cntr) {
     this.cntr = cntr;
   }
 
-  public void resetGridPointer() {
+  public void refresh() {
     uiGrid.resetPointer();
+    pack();
   }
 
   public class repaintTimerActionListener implements ActionListener {
@@ -86,7 +87,7 @@ public class Window extends JFrame implements KeyListener {
   }
 
   public void startGame() {
-    resetGridPointer();
+    refresh();
     onlyShow(null);
     repaintTimer.start();
   }
