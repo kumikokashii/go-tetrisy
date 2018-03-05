@@ -4,28 +4,35 @@ import javax.swing.*;
 
 
 public class MenuPart extends JPanel {
+  public static JLabel get(String text, int size) {
+    JLabel label = new JLabel(text);
+    label.setFont(new Font("American Typewriter", Font.BOLD, size));
+    return label;
+  }
+
   public static JLabel get(String text) {
     JLabel label = new JLabel(text);
+    label.setFont(new Font("Futura", Font.PLAIN, 16));
     return label;
   }
 
   public static JPanel getTitlePanel(String title, String startInstruction) {
     MenuPart panel = new MenuPart();
-    panel.addComp(get(title));
+    panel.addComp(get(title, 22));
     panel.addComp(get(startInstruction));
     return panel;
   }
 
   public static JPanel getControlsPanel() {
     MenuPart panel = new MenuPart();
-    panel.addComp(get("Controls"));
-    panel.addComp(get("< \u2190 > Shift Left"));
-    panel.addComp(get("< \u2192 > Shift Right"));
-    panel.addComp(get("< \u2193 > Shift Down"));
-    panel.addComp(get("< z > Rotate Left"));
-    panel.addComp(get("< x > Rotate Right"));
-    panel.addComp(get("< Space Bar> Drop"));
-    panel.addComp(get("< p > Pause"));
+    panel.addComp(get("Controls", 20));
+    panel.add2Col(get("< \u2190 >"), get("Shift Left"));
+    panel.add2Col(get("< \u2192 >"), get("Shift Right"));
+    panel.add2Col(get("< \u2193 >"), get("Shift Down"));
+    panel.add2Col(get("< z >"), get("Rotate Left"));
+    panel.add2Col(get("< x >"), get("Rotate Right"));
+    panel.add2Col(get("< Space >"), get("Drop"));
+    panel.add2Col(get("< p >"), get("Pause"));
     return panel;
   }
 
@@ -35,34 +42,52 @@ public class MenuPart extends JPanel {
     if (paused) {
       instruction = "Switch color scheme";
     }
-    panel.addComp(get(instruction));
-    panel.addComp(get("< 1 > Default"));
-    panel.addComp(get("< 2 > Pastel"));
-    panel.addComp(get("< 3 > B & W"));
+    panel.addComp(get(instruction, 20));
+    panel.add2Col(get("< 1 >"), get("Default"));
+    panel.add2Col(get("< 2 >"), get("Pastel"));
+    panel.add2Col(get("< 3 >"), get("B & W"));
     return panel;
   }
 
   public static JPanel getGridOptionsPanel() {
     MenuPart panel = new MenuPart();
-    panel.addComp(get("Make your own grid"));
-    panel.addComp(get("< c > Customize size"));
-    panel.addComp(get("< f > Fill some squares"));
-    panel.addComp(get("< g > Standard grid"));
+    panel.addComp(get("Make your own grid", 20));
+    panel.add2Col(get("< c >"), get("Customize size"));
+    panel.add2Col(get("< f >"), get("Fill some squares"));
+    panel.add2Col(get("< g >"), get("Standard grid"));
     return panel;
   }
 
   private GridBagConstraints c;
 
-  public MenuPart() {
+  MenuPart() {
     super();
     setLayout(new GridBagLayout());
     c = new GridBagConstraints();
     c.gridy = 0;
+    c.gridx = 0;
   }
 
   public void addComp(Component comp) {
+    c.gridwidth = 2;
+    c.anchor = GridBagConstraints.CENTER;
     super.add(comp, c);
     c.gridy += 1;
+  }
+
+  public void add2Col(Component comp1, Component comp2) {
+    c.gridwidth = 1;
+    c.anchor = GridBagConstraints.CENTER;
+    c.ipadx = 20;
+    super.add(comp1, c);
+
+    c.gridx += 1;
+    c.anchor = GridBagConstraints.LINE_START;
+    c.ipadx = 0;
+    super.add(comp2, c);
+
+    c.gridy += 1;
+    c.gridx -= 1;
   }
 }
 
