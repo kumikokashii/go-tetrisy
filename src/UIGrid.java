@@ -13,6 +13,8 @@ public class UIGrid extends JPanel {
   private int h;
   private int w;
   private Piece piece;
+  private int minHeight;
+  private boolean isMinHeight;
 
   public UIGrid() {
     colorScheme = ColorScheme.DEFAULT;
@@ -21,6 +23,7 @@ public class UIGrid extends JPanel {
 
   public void setManager(Manager mngr) {
     this.mngr = mngr;
+    minHeight = mngr.getGridH();
   }
 
   public void setPiece() {
@@ -31,7 +34,12 @@ public class UIGrid extends JPanel {
     grid = mngr.getGrid();
     h = grid.h;
     w = grid.w;
-    setPreferredSize(new Dimension(w * side, h * side));
+    isMinHeight = (h >= minHeight);
+    int actualH = h;
+    if (! isMinHeight) {
+      actualH = minHeight;
+    }
+    setPreferredSize(new Dimension(w * side, actualH * side));
   }
 
   public void setColorScheme(ColorScheme colorScheme) {
@@ -46,6 +54,9 @@ public class UIGrid extends JPanel {
     super.paintComponent(g);
     drawGridLines(g);
     drawBlocks(g);
+    if (! isMinHeight) {
+      fillBottom(g);
+    }
     setPiece();
     if (piece != null) {
       drawPiece(g);
@@ -72,6 +83,14 @@ public class UIGrid extends JPanel {
         if (grid.isFilled(y, x)) {
           drawSquare(x, y, grid.getBlockName(y, x), g);
         }
+      }
+    }
+  }
+
+  public void fillBottom(Graphics g) {
+    for (int y = h; y < 20; y++) {
+      for (int x = 0; x < w; x++) {
+        drawSquare(x, y, BlockName.L, g);
       }
     }
   }

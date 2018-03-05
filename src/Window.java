@@ -58,8 +58,7 @@ public class Window extends JFrame implements KeyListener {
   public void setManager(Manager mngr) {
     this.mngr = mngr;
     uiGrid.setManager(mngr);
-
-    initMenuSizeLocation();
+    initMenuSize();
     refresh();
   }
 
@@ -71,9 +70,10 @@ public class Window extends JFrame implements KeyListener {
     uiGrid.resetPointer();
     resetMenuLocation();
     pack();
+    repaint();
   }
 
-  public void initMenuSizeLocation() {
+  public void initMenuSize() {
     menuW = (mngr.getGridW() - 2) * gridSideSize;
     menuH = (mngr.getGridH() - 2) * gridSideSize;
 
