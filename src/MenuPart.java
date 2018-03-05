@@ -77,8 +77,10 @@ public class MenuPart extends JPanel {
 
   public void add2Col(Component comp1, Component comp2) {
     c.gridwidth = 1;
+    c.weightx = 0.5;
+
     c.anchor = GridBagConstraints.CENTER;
-    c.ipadx = 20;
+    c.ipadx = 10;
     super.add(comp1, c);
 
     c.gridx += 1;

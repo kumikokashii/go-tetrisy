@@ -37,10 +37,14 @@ public class Menu extends JPanel {
     super();
     setLayout(new GridBagLayout());
     c = new GridBagConstraints();
+    c.ipady = 30;
     c.gridy = 0;
   }
 
   public void addComp(Component comp) {
+    if (c.gridy > 0) {
+      c.ipady = 20;
+    }
     super.add(comp, c);
     c.gridy += 1;
   }
