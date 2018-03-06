@@ -53,7 +53,6 @@ public class MenuPart extends JPanel {
     MenuPart panel = new MenuPart();
     panel.addComp(get("Make your own grid", 20));
     panel.add2Col(get("< c >"), get("Customize size"));
-    panel.add2Col(get("< f >"), get("Fill some squares"));
     panel.add2Col(get("< g >"), get("Standard grid"));
     return panel;
   }

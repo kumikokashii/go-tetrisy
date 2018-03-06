@@ -4,20 +4,26 @@ import java.awt.Color;
 
 
 public enum ColorScheme {
-  DEFAULT(defaultFillMap(), defaultBrightMap(), defaultDarkMap()),
-  PASTEL(pastelFillMap(), pastelBrightMap(), pastelDarkMap()),
-  MONO(monoFillMap(), monoBrightMap(), monoDarkMap());
+  DEFAULT(defaultFillMap(), defaultBrightMap(), defaultDarkMap(), defaultBackgroundColor(), defaultLineColor()),
+  PASTEL(pastelFillMap(), pastelBrightMap(), pastelDarkMap(), pastelBackgroundColor(), pastelLineColor()),
+  MONO(monoFillMap(), monoBrightMap(), monoDarkMap(), monoBackgroundColor(), monoLineColor());
 
   private Map<BlockName, Color> fillColorMap;
   private Map<BlockName, Color> brightColorMap;
   private Map<BlockName, Color> darkColorMap;
+  private Color backgroundColor;
+  private Color lineColor;
 
   private ColorScheme(Map<BlockName, Color> fillColorMap,
                       Map<BlockName, Color> brightColorMap,
-                      Map<BlockName, Color> darkColorMap) {
+                      Map<BlockName, Color> darkColorMap,
+                      Color backgroundColor,
+                      Color lineColor) {
     this.fillColorMap = fillColorMap; 
     this.brightColorMap = brightColorMap; 
     this.darkColorMap = darkColorMap;
+    this.backgroundColor = backgroundColor;
+    this.lineColor = lineColor;
   }
 
   public Color getFillColor(BlockName blockName) {
@@ -30,6 +36,14 @@ public enum ColorScheme {
 
   public Color getDarkColor(BlockName blockName) {
     return darkColorMap.get(blockName);
+  }
+
+  public Color getBackgroundColor() {
+    return backgroundColor;
+  }
+
+  public Color getLineColor() {
+    return lineColor;
   }
 
   private static Map<BlockName, Color> defaultFillMap() {
@@ -147,6 +161,30 @@ public enum ColorScheme {
     map.put(BlockName.T, new Color((float) 0.75, (float) 0.75, (float) 0.75));
     map.put(BlockName.WALL, new Color((float) 1, (float) 0.4, (float) 0.4));  // Red
     return map;
+  }
+
+  private static Color defaultBackgroundColor() {
+    return new Color((float) 0, (float) 0, (float) 0);
+  }
+
+  private static Color pastelBackgroundColor() {
+    return new Color((float) 0.375, (float) 0.375, (float) 0.375);
+  }
+
+  private static Color monoBackgroundColor() {
+    return new Color((float) 1, (float) 0, (float) 0.5);
+  }
+
+  private static Color defaultLineColor() {
+    return new Color((float) 0, (float) 0.5, (float) 1);
+  }
+
+  private static Color pastelLineColor() {
+    return new Color((float) 0.6, (float) 0.8, (float) 1);
+  }
+
+  private static Color monoLineColor() {
+    return new Color((float) 1, (float) 0.6, (float) 0.8);
   }
 
 }

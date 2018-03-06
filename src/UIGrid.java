@@ -17,7 +17,7 @@ public class UIGrid extends JPanel {
   private boolean isMinHeight;
 
   public UIGrid() {
-    colorScheme = ColorScheme.DEFAULT;
+    setColorScheme(ColorScheme.DEFAULT);
     side = DEFAULT_SIDE;
   }
 
@@ -44,6 +44,7 @@ public class UIGrid extends JPanel {
 
   public void setColorScheme(ColorScheme colorScheme) {
     this.colorScheme = colorScheme;
+    setBackground(colorScheme.getBackgroundColor());
   }
 
   public int getSide() {
@@ -64,7 +65,7 @@ public class UIGrid extends JPanel {
   }
 
   public void drawGridLines(Graphics g) {
-    g.setColor(Color.PINK);
+    g.setColor(colorScheme.getLineColor());
 
     // Horizontal lines
     for (int y = 0; y < (h + 1); y++) {

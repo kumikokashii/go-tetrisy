@@ -2,6 +2,7 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import javax.swing.border.EmptyBorder;
 import java.lang.NumberFormatException;
 
 
@@ -26,12 +27,13 @@ public class CustomizeSizeWindow extends JFrame {
     cp.setLayout(new GridBagLayout());
     GridBagConstraints c = new GridBagConstraints();
     c.gridy = 0;
-    cp.add(new JLabel(String.format("Enter integers between %d and %d.", MIN, MAX)), c);
+    cp.add(MenuPart.get(String.format("Enter integers between %d and %d.", MIN, MAX), 20), c);
     c.gridy += 1;
     cp.add(inputsPanel, c);
     c.gridy += 1;
     cp.add(new ButtonsPanel(), c);
 
+    cp.setBorder(new EmptyBorder(20, 20, 20, 20));
     setContentPane(cp);
     pack();
 
@@ -67,7 +69,7 @@ public class CustomizeSizeWindow extends JFrame {
 
   public void showInputError() {
     JOptionPane.showMessageDialog(this, 
-      String.format("Sorry, only integers between %d and %d.", MIN, MAX),
+      MenuPart.get(String.format("Sorry, only integers between %d and %d.", MIN, MAX)),
       "Input Error",
       JOptionPane.ERROR_MESSAGE);
   }
@@ -78,9 +80,9 @@ public class CustomizeSizeWindow extends JFrame {
 
     public InputsPanel() {
       super();
-      add(new JLabel("Width:"));
+      add(MenuPart.get("Width:"));
       add(widthInput);
-      add(new JLabel("Height:"));
+      add(MenuPart.get("Height:"));
       add(heightInput);
     }
   }
