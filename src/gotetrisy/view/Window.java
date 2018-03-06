@@ -1,4 +1,9 @@
 
+package gotetrisy.view;
+
+import gotetrisy.model.*;
+import gotetrisy.controller.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;

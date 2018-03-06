@@ -1,4 +1,8 @@
 
+package gotetrisy.view;
+
+import gotetrisy.model.*;
+
 import java.awt.*;
 import javax.swing.*;
 

@@ -1,4 +1,7 @@
 
+package gotetrisy.model;
+
+
 public enum BlockName {
   BAR(),
   L(),

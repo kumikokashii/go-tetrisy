@@ -1,4 +1,11 @@
 
+package gotetrisy;
+
+import gotetrisy.model.*;
+import gotetrisy.view.*;
+import gotetrisy.controller.*;
+
+
 public class GoTetrisy {
   public static void main(String[] args) {
     Manager mngr = Manager.getInstance();

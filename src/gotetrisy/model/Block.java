@@ -1,4 +1,6 @@
 
+package gotetrisy.model;
+
 import java.util.*;
 
 

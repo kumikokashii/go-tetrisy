@@ -1,4 +1,7 @@
 
+package gotetrisy.view;
+
+import gotetrisy.model.BlockName;
 import java.util.*;
 import java.awt.Color;
 

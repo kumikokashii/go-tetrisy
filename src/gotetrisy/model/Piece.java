@@ -1,4 +1,7 @@
 
+package gotetrisy.model;
+
+
 public class Piece {
   public Block block;
   public BlockName blockName;

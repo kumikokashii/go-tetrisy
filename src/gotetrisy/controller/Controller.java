@@ -1,4 +1,9 @@
 
+package gotetrisy.controller;
+
+import gotetrisy.model.*;
+import gotetrisy.view.*;
+
 import java.awt.event.*;
 
 

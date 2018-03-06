@@ -1,8 +1,11 @@
 
+package gotetrisy.model;
+
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.Timer;
 import java.awt.event.*;
+
 
 public class Manager {
   public static int DEFAULT_GRID_H = 20;
