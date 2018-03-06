@@ -2,6 +2,7 @@
 import java.util.*;
 import java.awt.Color;
 
+// Reference: https://www.rapidtables.com/web/color/RGB_Color.html
 
 public enum ColorScheme {
   DEFAULT(defaultFillMap(), defaultBrightMap(), defaultDarkMap(), defaultBackgroundColor(), defaultLineColor()),
@@ -61,11 +62,11 @@ public enum ColorScheme {
 
   private static Map<BlockName, Color> pastelFillMap() {
     Map<BlockName, Color> map = new HashMap<>();
-    map.put(BlockName.BAR, new Color((float) 0.6, (float) 1, (float) 1));  // Light blue
+    map.put(BlockName.BAR, new Color((float) 0.5, (float) 1, (float) 1));  // Light blue
     map.put(BlockName.L, new Color((float) 1, (float) 0.8, (float) 0.6));  // Orange
     map.put(BlockName.FLIP_L, new Color((float) 0.6, (float) 0.6, (float) 1));  // Blue
-    map.put(BlockName.BOX, new Color((float) 1, (float) 1, (float) 0.6));  // Yellow
-    map.put(BlockName.S, new Color((float) 0.6, (float) 1, (float) 0.6));  // Bright green
+    map.put(BlockName.BOX, new Color((float) 1, (float) 1, (float) 0.5));  // Yellow
+    map.put(BlockName.S, new Color((float) 0.5, (float) 1, (float) 0.5));  // Bright green
     map.put(BlockName.Z, new Color((float) 1, (float) 0.6, (float) 0.6));  // Red
     map.put(BlockName.T, new Color((float) 0.8, (float) 0.6, (float) 1));  // Purple
     map.put(BlockName.WALL, new Color((float) 0.625, (float) 0.625, (float) 0.625));  // Black
@@ -100,11 +101,11 @@ public enum ColorScheme {
 
   private static Map<BlockName, Color> pastelBrightMap() {
     Map<BlockName, Color> map = new HashMap<>();
-    map.put(BlockName.BAR, new Color((float) 0.8, (float) 1, (float) 1));  // Light blue
+    map.put(BlockName.BAR, new Color((float) 0.7, (float) 1, (float) 1));  // Light blue
     map.put(BlockName.L, new Color((float) 1, (float) 0.9, (float) 0.8));  // Orange
     map.put(BlockName.FLIP_L, new Color((float) 0.8, (float) 0.8, (float) 1));  // Blue
-    map.put(BlockName.BOX, new Color((float) 1, (float) 1, (float) 0.8));  // Yellow
-    map.put(BlockName.S, new Color((float) 0.8, (float) 1, (float) 0.8));  // Bright green
+    map.put(BlockName.BOX, new Color((float) 1, (float) 1, (float) 0.7));  // Yellow
+    map.put(BlockName.S, new Color((float) 0.7, (float) 1, (float) 0.7));  // Bright green
     map.put(BlockName.Z, new Color((float) 1, (float) 0.8, (float) 0.8));  // Red
     map.put(BlockName.T, new Color((float) 0.9, (float) 0.8, (float) 1));  // Purple
     map.put(BlockName.WALL, new Color((float) 0.75, (float) 0.75, (float) 0.75));  // Black
@@ -139,11 +140,11 @@ public enum ColorScheme {
 
   private static Map<BlockName, Color> pastelDarkMap() {
     Map<BlockName, Color> map = new HashMap<>();
-    map.put(BlockName.BAR, new Color((float) 0.4, (float) 1, (float) 1));  // Light blue
+    map.put(BlockName.BAR, new Color((float) 0.3, (float) 1, (float) 1));  // Light blue
     map.put(BlockName.L, new Color((float) 1, (float) 0.7, (float) 0.4));  // Orange
     map.put(BlockName.FLIP_L, new Color((float) 0.4, (float) 0.4, (float) 1));  // Blue
-    map.put(BlockName.BOX, new Color((float) 1, (float) 1, (float) 0.4));  // Yellow
-    map.put(BlockName.S, new Color((float) 0.4, (float) 1, (float) 0.4));  // Bright green
+    map.put(BlockName.BOX, new Color((float) 1, (float) 1, (float) 0.3));  // Yellow
+    map.put(BlockName.S, new Color((float) 0.3, (float) 1, (float) 0.3));  // Bright green
     map.put(BlockName.Z, new Color((float) 1, (float) 0.4, (float) 0.4));  // Red
     map.put(BlockName.T, new Color((float) 0.7, (float) 0.4, (float) 1));  // Purple
     map.put(BlockName.WALL, new Color((float) 0.5, (float) 0.5, (float) 0.5));  // Black
