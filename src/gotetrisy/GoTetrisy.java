@@ -1,9 +1,9 @@
 
 package gotetrisy;
 
+import gotetrisy.controller.Controller;
 import gotetrisy.model.Manager;
 import gotetrisy.view.Window;
-import gotetrisy.controller.Controller;
 
 
 public class GoTetrisy {
