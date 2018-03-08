@@ -8,20 +8,12 @@ import java.awt.event.*;
 
 
 public class Controller implements GameOverEventListener {
-  private static Controller cntr = null;
-
-  public static Controller getInstance() {
-    if (cntr == null) {
-      cntr = new Controller();
-    }
-    return cntr;
-  }
 
   private Manager mngr;
   private Window window;
   private GameStatus gameStatus;
 
-  private Controller() {
+  public Controller() {
     gameStatus = GameStatus.STARTING;
   }
 

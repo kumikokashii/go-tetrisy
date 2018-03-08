@@ -12,15 +12,6 @@ public class Manager {
   public static int DEFAULT_GRID_W = 10;
   public static int DEFAULT_DROP_EVERY = 1000;  // 1000 milliseconds = 1 sec
   
-  private static Manager mngr = null;
-
-  public static Manager getInstance() {
-    if (mngr == null) {
-      mngr = new Manager();
-    }
-    return mngr;
-  }
-
   private int grid_h;
   private int grid_w;
   private Grid grid;
@@ -32,7 +23,7 @@ public class Manager {
   private Timer dropTimer;
   private List<GameOverEventListener> gameOverEventListeners = new ArrayList<>();
 
-  private Manager() {
+  public Manager() {
     grid_h = DEFAULT_GRID_H;
     grid_w = DEFAULT_GRID_W;
     grid = new Grid(grid_h, grid_w);

@@ -1,19 +1,19 @@
 
 package gotetrisy;
 
-import gotetrisy.model.*;
-import gotetrisy.view.*;
-import gotetrisy.controller.*;
+import gotetrisy.model.Manager;
+import gotetrisy.view.Window;
+import gotetrisy.controller.Controller;
 
 
 public class GoTetrisy {
   public static void main(String[] args) {
-    Manager mngr = Manager.getInstance();
+    Manager mngr = new Manager();
 
-    Window window = Window.getInstance();
+    Window window = new Window();
     window.setManager(mngr);
 
-    Controller cntr = Controller.getInstance();
+    Controller cntr = new Controller();
     window.setController(cntr);
 
     cntr.setManager(mngr);

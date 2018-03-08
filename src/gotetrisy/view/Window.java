@@ -16,15 +16,6 @@ public class Window extends JFrame implements KeyListener {
 
   public static int DEFAULT_REPAINT_EVERY = 100;  // 1000 milliseconds = 1 sec
 
-  private static Window window = null;
-
-  public static Window getInstance() {
-    if (window == null) {
-      window = new Window();
-    }
-    return window;
-  }
-
   private UIGrid uiGrid;
   private Menu newGameMenu;
   private Menu pauseMenu;
@@ -37,7 +28,7 @@ public class Window extends JFrame implements KeyListener {
   private Controller cntr;
   private Timer repaintTimer;
 
-  private Window() {
+  public Window() {
     super("Go Tetrisy");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
