@@ -1,10 +1,12 @@
 
 package gotetrisy.controller;
 
-import gotetrisy.model.*;
-import gotetrisy.view.*;
-
-import java.awt.event.*;
+import gotetrisy.model.GameOverEventListener;
+import gotetrisy.model.GameStatus;
+import gotetrisy.model.Manager;
+import gotetrisy.view.ColorScheme;
+import gotetrisy.view.Window;
+import java.awt.event.KeyEvent;
 
 
 public class Controller implements GameOverEventListener {

@@ -1,8 +1,10 @@
 
 package gotetrisy.view;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import javax.swing.JPanel;
 
 
 public class Menu extends JPanel {

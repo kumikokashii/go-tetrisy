@@ -2,10 +2,13 @@
 package gotetrisy.view;
 
 import gotetrisy.model.BlockName;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.awt.Color;
 
+
 // Reference: https://www.rapidtables.com/web/color/RGB_Color.html
+
 
 public enum ColorScheme {
   DEFAULT(defaultFillMap(), defaultBrightMap(), defaultDarkMap(), defaultBackgroundColor(), defaultLineColor()),

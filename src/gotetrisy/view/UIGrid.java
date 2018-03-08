@@ -1,10 +1,14 @@
 
 package gotetrisy.view;
 
-import gotetrisy.model.*;
-
-import java.awt.*;
-import javax.swing.*;
+import gotetrisy.model.BlockName;
+import gotetrisy.model.Grid;
+import gotetrisy.model.Manager;
+import gotetrisy.model.Piece;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import javax.swing.JPanel;
 
 
 public class UIGrid extends JPanel {

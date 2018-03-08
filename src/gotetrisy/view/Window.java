@@ -1,15 +1,18 @@
 
 package gotetrisy.view;
 
-import gotetrisy.model.*;
-import gotetrisy.controller.*;
-
+import gotetrisy.controller.Controller;
+import gotetrisy.model.Manager;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ArrayList;
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 
 public class Window extends JFrame implements KeyListener {
