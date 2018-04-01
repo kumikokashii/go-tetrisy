@@ -9,11 +9,10 @@ import gotetrisy.view.Window;
 public class GoTetrisy {
   public static void main(String[] args) {
     Manager mngr = new Manager();
-
     Window window = new Window();
-    window.setManager(mngr);
-
     Controller cntr = new Controller();
+
+    window.setManager(mngr);
     window.setController(cntr);
 
     cntr.setManager(mngr);

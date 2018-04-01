@@ -133,8 +133,8 @@ public enum Block {
     rotateRightShiftX.put(FLIP_L_2, -1);
     rotateRightShiftX.put(FLIP_L_3, 0);
     rotateRightShiftX.put(BOX, 0);
-    rotateRightShiftX.put(S_0, 0);
-    rotateRightShiftX.put(S_1, 0);
+    rotateRightShiftX.put(S_0, 1);
+    rotateRightShiftX.put(S_1, -1);
     rotateRightShiftX.put(Z_0, 1);
     rotateRightShiftX.put(Z_1, -1);
     rotateRightShiftX.put(T_0, 0);
@@ -145,11 +145,26 @@ public enum Block {
   }
 
   private static Map<Block, Integer> initRotateLeftShiftX() {
-    Map<Block, Integer> rotateLeftShiftX = new HashMap<Block, Integer>(rotateRightShiftX);
+    Map<Block, Integer> rotateLeftShiftX = new HashMap<Block, Integer>();
+    rotateLeftShiftX.put(BAR_0, -2);
+    rotateLeftShiftX.put(BAR_1, 2);
+    rotateLeftShiftX.put(L_0, -1);
+    rotateLeftShiftX.put(L_1, 1);
+    rotateLeftShiftX.put(L_2, 0);
+    rotateLeftShiftX.put(L_3, 0);
+    rotateLeftShiftX.put(FLIP_L_0, 0);
+    rotateLeftShiftX.put(FLIP_L_1, 0);
+    rotateLeftShiftX.put(FLIP_L_2, -1);
+    rotateLeftShiftX.put(FLIP_L_3, 1);
+    rotateLeftShiftX.put(BOX, 0);
+    rotateLeftShiftX.put(S_0, 0);
+    rotateLeftShiftX.put(S_1, 0);
+    rotateLeftShiftX.put(Z_0, 0);
+    rotateLeftShiftX.put(Z_1, 0);
     rotateLeftShiftX.put(T_0, 1);
-    rotateLeftShiftX.put(T_1, -1);
+    rotateLeftShiftX.put(T_1, 0);
     rotateLeftShiftX.put(T_2, 0);
-    rotateLeftShiftX.put(T_3, 0);
+    rotateLeftShiftX.put(T_3, -1);
     return rotateLeftShiftX;
   }
 
