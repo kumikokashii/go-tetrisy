@@ -11,9 +11,9 @@ import javax.swing.Timer;
 
 
 public class Manager {
-  public static int DEFAULT_GRID_H = 20;
-  public static int DEFAULT_GRID_W = 10;
-  public static int DEFAULT_DROP_EVERY = 1000;  // 1000 milliseconds = 1 sec
+  private static int DEFAULT_GRID_H = 20;
+  private static int DEFAULT_GRID_W = 10;
+  private static int DEFAULT_DROP_EVERY = 1000;  // 1000 milliseconds = 1 sec
   
   private int grid_h;
   private int grid_w;

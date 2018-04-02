@@ -4,7 +4,7 @@ package gotetrisy.model;
 
 public class Piece {
   public Block block;
-  public BlockName blockName;
+  private BlockName blockName;
   public int y;
   public int x;
 

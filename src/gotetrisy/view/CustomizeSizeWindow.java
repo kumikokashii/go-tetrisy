@@ -17,8 +17,8 @@ import javax.swing.JTextField;
 
 public class CustomizeSizeWindow extends JFrame {
 
-  public static int MIN = 10;
-  public static int MAX = 50;
+  private static int MIN = 10;
+  private static int MAX = 50;
 
   public static void show(Controller cntr) {
     CustomizeSizeWindow csw = new CustomizeSizeWindow(cntr);
