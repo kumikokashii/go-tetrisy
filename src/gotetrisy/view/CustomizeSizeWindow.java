@@ -25,8 +25,8 @@ public class CustomizeSizeWindow extends JFrame {
     csw.setVisible(true);
   }
 
-  InputsPanel inputsPanel = new InputsPanel();
-  Controller cntr;
+  private InputsPanel inputsPanel = new InputsPanel();
+  private Controller cntr;
 
   public CustomizeSizeWindow(Controller cntr) {
     super("Go Tetrisy Customize Size");
