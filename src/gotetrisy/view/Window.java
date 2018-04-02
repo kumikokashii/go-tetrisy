@@ -132,7 +132,7 @@ public class Window extends JFrame implements KeyListener {
   }
 
   public void keyPressed(KeyEvent e) {
-    cntr.proceeKeyPressed(e.getKeyCode());
+    cntr.processKeyPressed(e.getKeyCode());
   }
 
   public void keyTyped(KeyEvent e) {}

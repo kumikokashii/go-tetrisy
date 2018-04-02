@@ -50,7 +50,7 @@ public class Controller implements GameOverEventListener {
     window.toggleGameOnPaused();
   }
 
-  public void proceeKeyPressed(int key) {
+  public void processKeyPressed(int key) {
     if ((gameStatus == GameStatus.STARTING) || (gameStatus == GameStatus.GAMEOVER)) {
       if (key == KeyEvent.VK_S) {
         setGameOn();
