@@ -1,5 +1,5 @@
 
-package gotetrisy.model;
+package gotetrisy.controller;
 
 
 public enum GameStatus {

@@ -2,7 +2,6 @@
 package gotetrisy.controller;
 
 import gotetrisy.model.GameOverEventListener;
-import gotetrisy.model.GameStatus;
 import gotetrisy.model.Manager;
 import gotetrisy.view.ColorScheme;
 import gotetrisy.view.Window;
