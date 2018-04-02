@@ -84,8 +84,8 @@ public class CustomizeSizeWindow extends JFrame {
   }
 
   public class InputsPanel extends JPanel {
-    JTextField widthInput = new InputField(); 
-    JTextField heightInput = new InputField(); 
+    private JTextField widthInput = new InputField(); 
+    private JTextField heightInput = new InputField(); 
 
     public InputsPanel() {
       super();
