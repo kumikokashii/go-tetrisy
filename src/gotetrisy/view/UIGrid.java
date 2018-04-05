@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 
 public class UIGrid extends JPanel {
-  public static int DEFAULT_SIDE = 30;
+  private static int DEFAULT_SIDE = 30;
 
   private ColorScheme colorScheme;
   private int side;
