@@ -1,4 +1,4 @@
-# go-tetrisy
+# Go Tetrisy
 Adaptation of Tetris with Swing
 
 ## Objective
