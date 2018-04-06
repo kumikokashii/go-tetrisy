@@ -17,7 +17,7 @@ import javax.swing.Timer;
 
 public class Window extends JFrame implements KeyListener {
 
-  public static int DEFAULT_REPAINT_EVERY = 100;  // 1000 milliseconds = 1 sec
+  private static int DEFAULT_REPAINT_EVERY = 100;  // 1000 milliseconds = 1 sec
 
   private UIGrid uiGrid;
   private Menu newGameMenu;
@@ -48,7 +48,7 @@ public class Window extends JFrame implements KeyListener {
       uiGrid.add(menu);
     }
     
-    repaintTimer = new Timer(DEFAULT_REPAINT_EVERY, new repaintTimerActionListener());
+    repaintTimer = new Timer(DEFAULT_REPAINT_EVERY, new RepaintTimerActionListener());
 
     addKeyListener(this);
     setFocusable(true);
@@ -88,7 +88,7 @@ public class Window extends JFrame implements KeyListener {
     }
   }
 
-  public class repaintTimerActionListener implements ActionListener {
+  public class RepaintTimerActionListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
       repaint();
     }
