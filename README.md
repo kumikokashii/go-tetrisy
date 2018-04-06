@@ -14,5 +14,8 @@ User has an option to pick a color scheme from Default, Pastel, and Black & Whit
 #### < Custom size grid >
 User has an option to change the grid size before starting a game.
 
+## References
+* Tetris piece rotation: http://tetris.wikia.com/wiki/DTET_Rotation_System
+
 ## Need:
 * Java 8
