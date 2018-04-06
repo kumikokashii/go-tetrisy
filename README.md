@@ -8,5 +8,11 @@ Tetris game with a few custom features implemented with Java Swing.
 ## Objective
 To solidify understanding of Object-Oriented Programming and some of the design patterns through an implementation of a GUI application. Key concepts to be explored are: Inheritance, MVC, Multithreading, Publish-subscribe pattern.
 
+## Features
+#### Color schemes
+User has an option to pick a color scheme from Default, Pastel, and Black & White on a menu during a pause or before starting a game.
+#### Custom size grid
+User has an option to change the grid size before starting a game.
+
 ## Need:
 * Java 8
